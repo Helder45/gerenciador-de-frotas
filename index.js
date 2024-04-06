@@ -18,10 +18,9 @@ app.set("view engine", "handlebars");
 let motoristas = [
   {
     id: 1,
+    cpf: "99999999999",
     nome: "Ana Gonçalves da Silva",
-    cargo: "Motorista Categoria C",
-    nickname: "ana.silva",
-    password: "",
+    habilitacao: "Motorista Categoria C",
   },
   {
     id: 2,
@@ -42,20 +41,9 @@ let motoristas = [
 let gerenciadores = [
   {
     id: 1,
-    nome: "ger1",
-    nickname: "ger.1",
-    password: "",
-  },
-  {
-    id: 2,
-    nome: "ger2",
-    nickname: "ger.2",
-    password: "",
-  },
-  {
-    id: 3,
-    nome: "ger3",
-    nickname: "ger.3",
+    cpf: "99999999999",
+    nome: "Ana Gonçalves da Silva",
+    nickname: "ana.silva",
     password: "",
   },
 ];
@@ -93,11 +81,27 @@ let veiculos = [
 var proximoId = 4;
 
 app.get("/", (req, res) => {
-    res.redirect("/login");
+    res.redirect("/areaDeTrabalho");
+});
+
+app.get("/areaDeTrabalho", (req, res) => {
+  res.render("areaDeTrabalho");
 });
 
 app.get("/login", (req, res) => {
   res.render("login");
+});
+
+app.get("/cadastro", (req, res) => {
+  res.render("cadastro");
+});
+
+app.get("/cadastroMotorista", (req, res) => {
+  res.render("cadastroMotorista");
+});
+
+app.get("/cadastroVeiculo", (req, res) => {
+  res.render("cadastroVeiculo");
 });
 
 app.get("/motoristas", (req, res) => {
@@ -108,6 +112,6 @@ app.get("/motoristas", (req, res) => {
     res.render("veiculos", { veiculos });
   });
 
-app.listen(7000, () => {
+app.listen(3000, () => {
     console.log("Server rodando");
   });
