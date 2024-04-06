@@ -1,0 +1,62 @@
+<main>
+  <h1 class="text-center bold text-xl">Usuários Cadastrados</h1>
+  <div class="overflow-x-auto">
+    <table class="table">
+      <!-- head -->
+      <thead>
+        <tr>
+          <th>
+            <label>
+              <input type="checkbox" class="checkbox" />
+            </label>
+          </th>
+          <th>Id</th>
+          <th>Nome</th>
+          <th>Apelido</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- row 1 -->
+        {{#if usuarios}}
+        {{#each usuarios}}
+        <tr>
+          <th>
+            <label>
+              <input type="checkbox" class="checkbox" />
+            </label>
+          </th>
+          <td>
+            <div class="flex items-center gap-3">
+              <div>
+                <div class="font-bold">{{this.id}}</div>
+              </div>
+            </div>
+          </td>
+          <td>
+            {{this.nome}}
+            <br />
+            <span class="badge badge-ghost badge-sm">{{this.cargo}}</span>
+          </td>
+          <td>{{this.nickname}}</td>
+          <th>
+            <button class="btn btn-ghost btn-xs">Mais</button>
+          </th>
+        </tr>
+        {{/each}}
+        {{else}}
+        <tr>
+          <td>
+            <div class="flex items-center gap-3">
+              <div>
+                <div class="font-bold">Não há usuários</div>
+              </div>
+            </div>
+          </td>
+        </tr>
+        {{/if}}
+      </tbody>
+
+    </table>
+  </div>
+</main>
