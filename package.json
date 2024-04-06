@@ -2,7 +2,6 @@
   "name": "frotas",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "dev": "nodemon index.js"
   },
@@ -13,5 +12,11 @@
     "express": "^4.19.2",
     "express-handlebars": "^7.1.2",
     "nodemon": "^3.1.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.19",
+    "daisyui": "^4.10.1",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.3"
   }
 }
