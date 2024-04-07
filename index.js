@@ -1,3 +1,6 @@
+//Comando para rodar o Watch do Tailwind
+//npx tailwindcss -i ./public/css/style.css -o ./dist/output.css --watch
+
 const exphbs = require("express-handlebars");
 const exp = require("express");
 const app = exp();
@@ -15,70 +18,9 @@ app.use("/css", exp.static("dist"));
 app.engine("handlebars", exphbs.engine());
 app.set("view engine", "handlebars");
 
-let motoristas = [
-  {
-    id: 1,
-    cpf: "99999999999",
-    nome: "Ana Gonçalves da Silva",
-    habilitacao: "Motorista Categoria C",
-  },
-  {
-    id: 2,
-    nome: "Pedro Bittencurt",
-    cargo: "Motorista Categoria A/B",
-    nickname: "pedro_bittencurt",
-    password: "",
-  },
-  {
-    id: 3,
-    nome: "Alex Bastos de Souza",
-    cargo: "Motorista Categoria A",
-    nickname: "alex.bsouza",
-    password: "",
-  },
-];
+let motoristas = [];
 
-let gerenciadores = [
-  {
-    id: 1,
-    cpf: "99999999999",
-    nome: "Ana Gonçalves da Silva",
-    nickname: "ana.silva",
-    password: "",
-  },
-];
-
-let veiculos = [
-  {
-    num_chassi: 1,
-    nome: "Carro1",
-    modelo: "Modelo1",
-    ano_fabri: "ano1",
-    marca: "marca1",
-    placa: "placa1",
-    status: "status1",
-  },
-  {
-    num_chassi: 2,
-    nome: "Carro2",
-    modelo: "Modelo2",
-    ano_fabri: "ano2",
-    marca: "marca2",
-    placa: "placa2",
-    status: "status2",
-  },
-  {
-    num_chassi: 3,
-    nome: "Carro3",
-    modelo: "Modelo3",
-    ano_fabri: "ano3",
-    marca: "marca3",
-    placa: "placa3",
-    status: "status3",
-  },
-];
-
-var id = 0;
+var id = 1;
 
 app.get("/", (req, res) => {
   res.redirect("/areaDeTrabalho");
@@ -107,12 +49,15 @@ app.post("/cadastroMotorista", (req, res) => {
 
   console.log(cpf, nome, dataNasc, genero, categoria, email, telefone);
 
-  let erros = [];
+  let erros = false;
+  let sucesso = false;
 
   if (!cpf || !nome || !dataNasc || !genero || !categoria || !email || !telefone) {
-    erros.push({texto: 'Erro! Os campos devem ser todos preenchidos!'});
+    erros = true;
     res.render('cadastroMotorista', {erros: erros});
   } else {
+    sucesso = true;
+    
     motoristas.push({
       id: id++,
       cpf: cpf,
@@ -124,9 +69,10 @@ app.post("/cadastroMotorista", (req, res) => {
       telefone: telefone,
     });
   
-    res.status(200).send('<div role="alert" class="alert alert-success"><svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg><span>Motorista cadastrado com sucesso!</span></div>');
-  
-    res.redirect("/areaDeTrabalho");
+    res.render('cadastroMotorista', {sucesso: sucesso});
+
+    let tempo = setTimeout(() => {res.redirect("/motoristas");
+    clearTimeout(tempo)}, 3000);
   }
 });
 
@@ -139,6 +85,11 @@ app.listen(3000, () => {
 });
 
 //Ideias Futuras
+
+//let veiculos = [];
+
+//let gerenciadores = [];
+
 // app.get("/login", (req, res) => {
 //   res.render("login");
 // });

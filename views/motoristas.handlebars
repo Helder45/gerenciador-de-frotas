@@ -1,62 +1,55 @@
 <main>
   <h1 class="text-center bold text-xl">Usuários Cadastrados</h1>
-  <div class="overflow-x-auto">
-    <table class="table">
+  <div class="border border-white/10 rounded-lg">
+    {{#if motoristas}}
+    <table class="table w-full">
       <!-- head -->
       <thead>
         <tr>
-          <th>
-            <label>
-              <input type="checkbox" class="checkbox" />
-            </label>
-          </th>
-          <th>Id</th>
-          <th>Nome</th>
-          <th>Apelido</th>
-          <th></th>
+          <th class="py-3 px-4 text-sm font-semibold text-left">Id</th>
+          <th class="py-3 px-4 text-sm font-semibold text-left">CPF</th>
+          <th class="py-3 px-4 text-sm font-semibold text-left">Nome</th>
+          <th class="py-3 px-4 text-sm font-semibold text-left">Data de Nascimento</th>
+          <th class="py-3 px-4 text-sm font-semibold text-left">Gênero</th>
+          <th class="py-3 px-4 text-sm font-semibold text-left">Carteira de habilitação</th>
+          <th class="py-3 px-4 text-sm font-semibold text-left">Email</th>
+          <th class="py-3 px-4 text-sm font-semibold text-left">Telefone</th>
         </tr>
       </thead>
       <tbody>
-        <!-- row 1 -->
-        {{#if usuarios}}
-        {{#each usuarios}}
+        {{#each motoristas}}
         <tr>
-          <th>
-            <label>
-              <input type="checkbox" class="checkbox" />
-            </label>
-          </th>
-          <td>
+          <td class="py-3 px-4 text-sm text-zinc-300">
             <div class="flex items-center gap-3">
               <div>
                 <div class="font-bold">{{this.id}}</div>
               </div>
             </div>
           </td>
-          <td>
-            {{this.nome}}
-            <br />
-            <span class="badge badge-ghost badge-sm">{{this.cargo}}</span>
+          <td class="py-3 px-4 text-sm text-zinc-300">
+            {{this.cpf}}
           </td>
-          <td>{{this.nickname}}</td>
-          <th>
-            <button class="btn btn-ghost btn-xs">Mais</button>
-          </th>
+          <td class="py-3 px-4 text-sm text-zinc-300">{{this.nome}}</td>
+          <td class="py-3 px-4 text-sm text-zinc-300">{{this.dataNasc}}</td>
+          <td class="py-3 px-4 text-sm text-zinc-300">{{this.genero}}</td>
+          <td class="py-3 px-4 text-sm text-zinc-300">{{this.categoria}}</td>
+          <td class="py-3 px-4 text-sm text-zinc-300">{{this.email}}</td>
+          <td class="py-3 px-4 text-sm text-zinc-300">{{this.telefone}}</td>
         </tr>
         {{/each}}
-        {{else}}
-        <tr>
-          <td>
-            <div class="flex items-center gap-3">
-              <div>
-                <div class="font-bold">Não há usuários</div>
-              </div>
-            </div>
-          </td>
-        </tr>
-        {{/if}}
       </tbody>
 
     </table>
+
+    {{else}}
+
+    <div class="toast toast-middle toast-center">
+      <div class="alert alert-error">
+        <span>Não há motoristas cadastrados!</span>
+      </div>
+    </div>
+
+    {{/if}}
+
   </div>
 </main>

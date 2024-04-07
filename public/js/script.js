@@ -1,6 +1,9 @@
+const alerta = document.getElementById("alert");
 const botaoAlerta = document.getElementById("botaoAlerta");
 
-botaoAlerta.addEventListener("click", (event) => {
+if (alerta) {
+    botaoAlerta.addEventListener("click", (event) => {
     event.preventDefault();
-    botaoAlerta.parentNode.parentNode.removeChild(document.getElementById("alert"));
-});
+    alerta.parentNode.removeChild(alerta);
+  });
+}
