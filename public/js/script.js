@@ -1,3 +1,6 @@
-const alerta = document.getElementsByClassName(".alert");
+const botaoAlerta = document.getElementById("botaoAlerta");
 
-console.log(alerta);
+botaoAlerta.addEventListener("click", (event) => {
+    event.preventDefault();
+    botaoAlerta.parentNode.parentNode.removeChild(document.getElementById("alert"));
+});
