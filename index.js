@@ -80,7 +80,7 @@ app.get("/motoristas", (req, res) => {
 app.post("/menuMotoristas", (req, res) => {
   const id = parseInt(req.body.id);
 
-  res.render('motorista/', {id});
+  res.render('motorista', {id});
 
 });
 
