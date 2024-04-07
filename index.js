@@ -70,9 +70,6 @@ app.post("/cadastroMotorista", (req, res) => {
     });
   
     res.render('cadastroMotorista', {sucesso: sucesso});
-
-    let tempo = setTimeout(() => {res.redirect("/motoristas");
-    clearTimeout(tempo)}, 3000);
   }
 });
 

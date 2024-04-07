@@ -19,22 +19,22 @@
       <tbody>
         {{#each motoristas}}
         <tr>
-          <td class="py-3 px-4 text-sm text-zinc-300">
+          <td class="py-3 px-4 text-sm text-black">
             <div class="flex items-center gap-3">
               <div>
                 <div class="font-bold">{{this.id}}</div>
               </div>
             </div>
           </td>
-          <td class="py-3 px-4 text-sm text-zinc-300">
+          <td class="py-3 px-4 text-sm text-black font-semibold">
             {{this.cpf}}
           </td>
-          <td class="py-3 px-4 text-sm text-zinc-300">{{this.nome}}</td>
-          <td class="py-3 px-4 text-sm text-zinc-300">{{this.dataNasc}}</td>
-          <td class="py-3 px-4 text-sm text-zinc-300">{{this.genero}}</td>
-          <td class="py-3 px-4 text-sm text-zinc-300">{{this.categoria}}</td>
-          <td class="py-3 px-4 text-sm text-zinc-300">{{this.email}}</td>
-          <td class="py-3 px-4 text-sm text-zinc-300">{{this.telefone}}</td>
+          <td class="py-3 px-4 text-sm text-black font-semibold">{{this.nome}}</td>
+          <td class="py-3 px-4 text-sm text-black font-semibold">{{this.dataNasc}}</td>
+          <td class="py-3 px-4 text-sm text-black font-semibold">{{this.genero}}</td>
+          <td class="py-3 px-4 text-sm text-black font-semibold">{{this.categoria}}</td>
+          <td class="py-3 px-4 text-sm text-black font-semibold">{{this.email}}</td>
+          <td class="py-3 px-4 text-sm text-black font-semibold">{{this.telefone}}</td>
         </tr>
         {{/each}}
       </tbody>
