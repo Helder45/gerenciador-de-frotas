@@ -78,40 +78,83 @@ let veiculos = [
   },
 ];
 
-var proximoId = 4;
+var id = 0;
 
 app.get("/", (req, res) => {
-    res.redirect("/areaDeTrabalho");
+  res.redirect("/areaDeTrabalho");
 });
 
 app.get("/areaDeTrabalho", (req, res) => {
   res.render("areaDeTrabalho");
 });
 
-app.get("/login", (req, res) => {
-  res.render("login");
-});
-
-app.get("/cadastro", (req, res) => {
-  res.render("cadastro");
+app.get("/menuMotoristas", (req, res) => {
+  res.render("menuMotoristas");
 });
 
 app.get("/cadastroMotorista", (req, res) => {
   res.render("cadastroMotorista");
 });
 
-app.get("/cadastroVeiculo", (req, res) => {
-  res.render("cadastroVeiculo");
+app.post("/cadastroMotorista", (req, res) => {
+  const cpf = req.body.cpf;
+  const nome = req.body.name;
+  const dataNasc = req.body.dataNasc;
+  const genero = req.body.genero;
+  const categoria = req.body.categoria;
+  const email = req.body.email;
+  const telefone = req.body.telefone;
+
+  console.log(cpf, nome, dataNasc, genero, categoria, email, telefone);
+
+  let erros = [];
+
+  if (!cpf || !nome || !dataNasc || !genero || !categoria || !email || !telefone) {
+    erros.push({texto: 'Erro! Os campos devem ser todos preenchidos!'});
+    res.render('cadastroMotorista', {erros: erros});
+  } else {
+    motoristas.push({
+      id: id++,
+      cpf: cpf,
+      nome: nome,
+      dataNasc: dataNasc,
+      genero: genero,
+      categoria: categoria,
+      email: email,
+      telefone: telefone,
+    });
+  
+    res.status(200).send('<div role="alert" class="alert alert-success"><svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg><span>Motorista cadastrado com sucesso!</span></div>');
+  
+    res.redirect("/areaDeTrabalho");
+  }
 });
 
 app.get("/motoristas", (req, res) => {
-    res.render("motoristas", { motoristas });
-  });
-
-  app.get("/veiculos", (req, res) => {
-    res.render("veiculos", { veiculos });
-  });
+  res.render("motoristas", { motoristas });
+});
 
 app.listen(3000, () => {
-    console.log("Server rodando");
-  });
+  console.log("Servidor rodando");
+});
+
+//Ideias Futuras
+// app.get("/login", (req, res) => {
+//   res.render("login");
+// });
+
+// app.get("/cadastro", (req, res) => {
+//   res.render("cadastro");
+// });
+
+// app.get("/menuVeiculos", (req, res) => {
+//   res.render("menuVeiculos");
+// });
+
+// app.get("/cadastroVeiculo", (req, res) => {
+//   res.render("cadastroVeiculo");
+// });
+
+// app.get("/veiculos", (req, res) => {
+//   res.render("veiculos", { veiculos });
+// });

@@ -1,12 +1,15 @@
 <main>
 
-    <h1>Sistema de Gerenciamento de Frotas</h1>
+    <div class="h-auto w-full flex flex-col items-center my-4 bg-black/10 rounded-box ">
+        <h1 class="text-xl font-bold my-4">Sistema de Gerenciamento de Frotas</h1>
+        <h2 class="text-lg font-bold my-4">O que deseja gerenciar?</h2>
+    </div>
 
-    <h2>O que deseja gerenciar?</h2>
-
-    <div class="flex w-full">
-        <div class="grid h-20 flex-grow card bg-base-300 rounded-box place-items-center">Motoristas</div>
-        <div class="divider divider-horizontal">OU</div>
-        <div class="grid h-20 flex-grow card bg-base-300 rounded-box place-items-center">Veículos</div>
+    <div class="container h-screen mx-auto flex items-center flex-col">
+        <div class="flex w-full">
+            <a href="/menuMotoristas" class="grid h-20 flex-grow card bg-base-300 rounded-box place-items-center">Motoristas</a>
+            {{!-- <div class="divider divider-horizontal">OU</div> --}}
+            {{!-- <a href="/menuVeiculos" class="grid h-20 flex-grow card bg-base-300 rounded-box place-items-center">Veículos</a> --}}
+        </div>
     </div>
 </main>
