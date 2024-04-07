@@ -69,12 +69,27 @@ app.post("/cadastroMotorista", (req, res) => {
       telefone: telefone,
     });
   
-    res.render('cadastroMotorista', {sucesso: sucesso});
+    res.render('cadastroMotorista', {sucesso});
   }
 });
 
 app.get("/motoristas", (req, res) => {
   res.render("motoristas", { motoristas });
+});
+
+app.post("/menuMotoristas", (req, res) => {
+  const id = parseInt(req.body.id);
+
+  res.render('motorista/', {id});
+
+});
+
+app.get("/motorista/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+
+  const motorista = motoristas.find((motorista) => motorista.id === id);
+
+  res.render("motorista", { motorista });
 });
 
 app.listen(3000, () => {
