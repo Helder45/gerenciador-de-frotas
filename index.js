@@ -69,12 +69,16 @@ app.post("/cadastroMotorista", (req, res) => {
       telefone: telefone,
     });
   
-    res.render('cadastroMotorista', {sucesso});
+    res.render('menuMotoristas', {sucesso});
   }
 });
 
 app.get("/motoristas", (req, res) => {
   res.render("motoristas", { motoristas });
+});
+
+app.get("/atualizarMotorista", (req, res) => {
+  res.render("atualizarMotorista");
 });
 
 app.post("/menuMotoristas", (req, res) => {
@@ -84,25 +88,54 @@ app.post("/menuMotoristas", (req, res) => {
 
   res.render("motorista", { motorista });
 
-  // res.send(`
-  //           <h1>Dados da Entidade</h1>
-  //           <p>ID: ${motorista.id}</p>
-  //           <p>Nome: ${motorista.nome}</p>
-  //           <p>Descrição: ${motorista.descricao}</p>
-  //           <a href="/buscar-entidade">Voltar</a>
-  //       `);
+});
 
-  // res.render('motorista', {id});
+app.post("/atualizarMotorista", (req, res) => {
+  const id = parseInt(req.body.id);
+
+  const motorista = motoristas.find((motorista) => motorista.id === id);
+
+  res.render("atualizarMotorista", { motorista });
 
 });
 
-// app.get("/motorista/:id", (req, res) => {
-//   const id = parseInt(req.params.id);
+app.post("/atualizacaoMotorista", (req, res) => {
 
-//   const motorista = motoristas.find((motorista) => motorista.id === id);
+  let erros = false;
+  let sucesso = false;
 
-//   res.render("motorista", { motorista });
-// });
+  const cpf = req.body.cpf;
+  const nome = req.body.name;
+  const dataNasc = req.body.dataNasc;
+  const genero = req.body.genero;
+  const categoria = req.body.categoria;
+  const email = req.body.email;
+  const telefone = req.body.telefone;
+
+  if (!cpf || !nome || !dataNasc || !genero || !categoria || !email || !telefone) {
+    erros = true;
+    res.render('atualizarMotorista', {erros: erros});
+  } else {
+    sucesso = true;
+
+  motoristas.forEach((motorista, index) =>{
+    if(motorista.cpf === cpf){
+      motorista.cpf = cpf,
+      motorista.nome = nome,
+      motorista.dataNasc = dataNasc,
+      motorista.genero = genero,
+      motorista.categoria = categoria,
+      motorista.email = email,
+      motorista.telefone = telefone
+      }
+    }
+);
+
+  res.render("menuMotoristas", {sucesso});
+
+}
+
+});
 
 app.listen(3000, () => {
   console.log("Servidor rodando");

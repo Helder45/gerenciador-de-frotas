@@ -14,66 +14,74 @@
 
     </div>
     {{/if}}
-    <form action="/cadastroMotorista" method="post"
+    {{#if motorista}}
+    <form action="/atualizacaoMotorista" method="post"
         class="card mx-auto w-full h-screen max-w-md bg-base-100 shadow-xl p-5 flex items-center justify-center">
-        <h1 class="text-center text-2xl font-bold border p-8 rounded-box bg-stone-600/10 mb-4">Cadastro de motorista
+        <h1 class="text-center text-2xl font-bold border p-8 rounded-box bg-stone-600/10 mb-4">Atualização de motorista
         </h1>
         <label class="form-control w-full max-w-xs">
             <div class="label">
                 <label for="cpf" class="label-text">Qual é o CPF do motorista?</label>
             </div>
-            <input id="cpf" name="cpf" type="text" placeholder="Digite o cpf aqui"
+            <input id="cpf" name="cpf" type="text" value="{{motorista.cpf}}" placeholder="Digite o cpf aqui"
                 class="input input-bordered w-full max-w-xs" />
         </label>
         <label class="form-control w-full max-w-xs">
             <div class="label">
                 <label for="name" class="label-text">Qual é o nome do motorista?</label>
             </div>
-            <input id="name" name="name" type="text" placeholder="Digite o nome aqui"
+            <input id="name" name="name" type="text" value="{{motorista.nome}}" placeholder="Digite o nome aqui"
                 class="input input-bordered w-full max-w-xs" />
         </label>
         <label class="form-control w-full max-w-xs">
             <div class="label">
                 <label for="dataNasc" class="label-text">Qual data de nascimento do motorista?</label>
             </div>
-            <input id="dataNasc" name="dataNasc" type="date" class="input input-bordered w-full max-w-xs" />
+            <input id="dataNasc" name="dataNasc" type="date" value="{{motorista.dataNasc}}"
+                class="input input-bordered w-full max-w-xs" />
         </label>
         <label class="form-control w-full max-w-xs">
             <div class="label">
                 <label for="genero" class="label-text">Qual é o gênero do motorista?</label>
             </div>
-            <input id="genero" name="genero" type="text" placeholder="Masculino ou Feminino?"
-                class="input input-bordered w-full max-w-xs" />
+            <input id="genero" name="genero" type="text" value="{{motorista.genero}}"
+                placeholder="Masculino ou Feminino?" class="input input-bordered w-full max-w-xs" />
         </label>
         <label class="form-control w-full max-w-xs">
             <div class="label">
                 <label for="categoria" class="label-text">Qual é a categoria de habilitação do motorista?</label>
             </div>
-            <input id="categoria" name="categoria" type="text" placeholder="Digite a categoria aqui"
-                class="input input-bordered w-full max-w-xs" />
+            <input id="categoria" name="categoria" type="text" value="{{motorista.categoria}}"
+                placeholder="Digite a categoria aqui" class="input input-bordered w-full max-w-xs" />
         </label>
         <label class="form-control w-full max-w-xs">
             <div class="label">
                 <label for="email" class="label-text">Qual o email do motorista?</label>
             </div>
-            <input id="email" name="email" type="email" placeholder="Digite o email aqui"
+            <input id="email" name="email" type="email" value="{{motorista.email}}" placeholder="Digite o email aqui"
                 class="input input-bordered w-full max-w-xs" />
         </label>
         <label class="form-control w-full max-w-xs">
             <div class="label">
                 <label for="telefone" class="label-text">Qual o número de telefone do motorista?</label>
             </div>
-            <input id="telefone" name="telefone" type="text" placeholder="Digite o telefone aqui"
-                class="input input-bordered w-full max-w-xs" />
+            <input id="telefone" name="telefone" type="text" value="{{motorista.telefone}}"
+                placeholder="Digite o telefone aqui" class="input input-bordered w-full max-w-xs" />
         </label>
 
         <div class="mt-4 border-t-2 w-full flex flex-col items-center p-2">
-            <button class="btn btn-neutral w-full" type="submit">Cadastrar</button>
+            <button class="btn btn-neutral w-full" type="submit">Atualizar</button>
             <a href="/menuMotoristas" class="btn btn-neutral my-2 w-full">Voltar ao menu</a>
         </div>
 
     </form>
+    {{else}}
 
+    <div class="border rounded-md px-2 my-2 bg-slate-100">
+        <h1 class="text-xl font-bold my-4">Motorista não encontrado para atualizar!</h1>
+        <a href="/menuMotoristas" class="btn btn-neutral my-2">Voltar ao menu</a>
+    </div>
 
+    {{/if}}
     <script src="/js/script.js"></script>
 </main>
