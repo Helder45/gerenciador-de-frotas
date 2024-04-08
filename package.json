@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
+    "tail": "npx tailwindcss -i ./public/css/style.css -o ./dist/output.css --watch",
     "dev": "nodemon index.js"
   },
   "keywords": [],

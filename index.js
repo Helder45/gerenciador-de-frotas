@@ -80,17 +80,29 @@ app.get("/motoristas", (req, res) => {
 app.post("/menuMotoristas", (req, res) => {
   const id = parseInt(req.body.id);
 
-  res.render('motorista', {id});
-
-});
-
-app.get("/motorista/:id", (req, res) => {
-  const id = parseInt(req.params.id);
-
   const motorista = motoristas.find((motorista) => motorista.id === id);
 
   res.render("motorista", { motorista });
+
+  // res.send(`
+  //           <h1>Dados da Entidade</h1>
+  //           <p>ID: ${motorista.id}</p>
+  //           <p>Nome: ${motorista.nome}</p>
+  //           <p>Descrição: ${motorista.descricao}</p>
+  //           <a href="/buscar-entidade">Voltar</a>
+  //       `);
+
+  // res.render('motorista', {id});
+
 });
+
+// app.get("/motorista/:id", (req, res) => {
+//   const id = parseInt(req.params.id);
+
+//   const motorista = motoristas.find((motorista) => motorista.id === id);
+
+//   res.render("motorista", { motorista });
+// });
 
 app.listen(3000, () => {
   console.log("Servidor rodando");
