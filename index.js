@@ -118,23 +118,53 @@ app.post("/atualizacaoMotorista", (req, res) => {
   } else {
     sucesso = true;
 
-  motoristas.forEach((motorista, index) =>{
-    if(motorista.cpf === cpf){
-      motorista.cpf = cpf,
-      motorista.nome = nome,
-      motorista.dataNasc = dataNasc,
-      motorista.genero = genero,
-      motorista.categoria = categoria,
-      motorista.email = email,
-      motorista.telefone = telefone
-      }
+    const motoristaIndex = motoristas.findIndex((motorista) => motorista.cpf == cpf);
+
+    if (motoristaIndex !== -1) {
+      // Atualiza os dados do motorista encontrado
+      motoristas[motoristaIndex] = {
+        ...motoristas[motoristaIndex],
+        cpf,
+        nome,
+        dataNasc,
+        genero,
+        categoria,
+        email,
+        telefone
+      };
     }
-);
 
   res.render("menuMotoristas", {sucesso});
 
-}
+  }
+});
 
+app.post("/excluirMotorista", (req, res) => {
+
+  let erros = false;
+
+  const cpf = parseInt(req.body.cpf);
+
+  if (!cpf) {
+    erros = true;
+    res.render('menuMotoristas', {erros});
+  } else {
+    sucesso = true;
+
+    const motoristaIndex = motoristas.findIndex((motorista) => motorista.cpf == cpf);
+
+    if (motoristaIndex !== -1) {
+  
+      motoristas.splice(motoristaIndex, 1);
+
+      for (let i = 0; i < motoristas.length; i++) {
+        motoristas[i].id = i + 1;
+      }
+    }
+
+  res.render("menuMotoristas", {sucesso});
+  
+  }
 });
 
 app.listen(3000, () => {
