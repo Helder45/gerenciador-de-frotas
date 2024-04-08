@@ -47,8 +47,6 @@ app.post("/cadastroMotorista", (req, res) => {
   const email = req.body.email;
   const telefone = req.body.telefone;
 
-  console.log(cpf, nome, dataNasc, genero, categoria, email, telefone);
-
   let erros = false;
   let sucesso = false;
 
