@@ -1,8 +1,11 @@
 //Comando para rodar o Watch do Tailwind
 //npx tailwindcss -i ./public/css/style.css -o ./dist/output.css --watch
-
-const exphbs = require("express-handlebars");
-const exp = require("express");
+// require("dotenv").config();
+import 'dotenv/config'
+// const exphbs = require("express-handlebars");
+import exphbs from 'express-handlebars';
+// const exp = require("express");
+import exp from 'express';
 const app = exp();
 
 //Settings
@@ -165,8 +168,8 @@ app.post("/excluirMotorista", (req, res) => {
   }
 });
 
-app.listen(3000, () => {
-  console.log("Servidor rodando");
+app.listen(process.env.SERVER_PORT, () => {
+  console.log("Servidor rodando.");
 });
 
 //Ideias Futuras
