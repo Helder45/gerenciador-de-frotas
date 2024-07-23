@@ -75,6 +75,8 @@ module.exports = class MotoristaController {
       telefone: req.body.telefone,
     };
 
+    console.log(dadosMotorista.genero);
+
     const motoristaCad = await Motorista.findOne({
       where: { cpf: dadosMotorista.cpf },
     });

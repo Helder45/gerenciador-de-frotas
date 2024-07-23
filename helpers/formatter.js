@@ -15,7 +15,7 @@ function cpfFormatter(cpf) {
 
       return cpf;
     } else {
-      console.log("CPF invalido");
+      return null;
     }
   }
 }

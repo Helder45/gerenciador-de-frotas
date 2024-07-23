@@ -29,7 +29,7 @@
 
     </div>
     {{/if}}
-    <form action="/menuMotoristas/cadastroMotorista" method="post"
+    <form name="form_cadastro" action="/menuMotoristas/cadastroMotorista" method="post"
         class="card mx-auto w-full max-w-md bg-base-100 shadow-xl p-5 flex items-center justify-center">
         <h1 class="text-center text-2xl font-bold border p-8 rounded-box bg-stone-600/10 mb-4">Cadastro de motorista
         </h1>
@@ -37,7 +37,7 @@
             <div class="label">
                 <label for="cpf" class="label-text">Qual é o CPF do motorista?</label>
             </div>
-            <input id="cpf" name="cpf" type="text" placeholder="Digite o cpf aqui"
+            <input id="cpf" name="cpf" type="text" placeholder="Digite o cpf aqui" maxlength="14" onblur="ValidaCPF();"
                 class="input input-bordered w-full max-w-xs" />
         </label>
         <label class="form-control w-full max-w-xs">
@@ -57,8 +57,10 @@
             <div class="label">
                 <label for="genero" class="label-text">Qual é o gênero do motorista?</label>
             </div>
-            <input id="genero" name="genero" type="text" placeholder="Masculino ou Feminino?"
-                class="input input-bordered w-full max-w-xs" />
+            <select id="genero" name="genero" class="select select-bordered">
+                <option>Masculino</option>
+                <option>Feminino</option>
+            </select>
         </label>
         <label class="form-control w-full max-w-xs">
             <div class="label">
@@ -83,7 +85,7 @@
         </label>
 
         <div class="mt-4 border-t-2 w-full flex flex-col items-center p-2">
-            <button class="btn btn-neutral w-full" type="submit">Cadastrar</button>
+            <button id="cadastrar" class="btn btn-neutral w-full" type="submit">Cadastrar</button>
             <a href="/menuMotoristas" class="btn btn-neutral my-2 w-full">Voltar ao menu</a>
         </div>
 
