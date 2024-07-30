@@ -9,20 +9,20 @@ module.exports = class MotoristaController {
   static async findListar(req, res) {
     const id = parseInt(req.body.id);
 
-    const motorista = await Motorista.findByPk(id);
+    const motorista = await Motorista.findByPk(id, {raw: true});
 
     if (motorista !== null) {
       const motoristaFormatado = {
-        id: motorista.dataValues.id,
-        cpf: formatter.cpfFormatter(motorista.dataValues.cpf),
-        nome: motorista.dataValues.nome,
-        dataNasc: formatter.dateFormatted(motorista.dataValues.dataNasc),
-        genero: motorista.dataValues.genero,
-        categoria: motorista.dataValues.categoria,
-        email: motorista.dataValues.email,
-        telefone: formatter.mphone(motorista.dataValues.telefone),
-        createdAt: motorista.dataValues.createdAt,
-        updatedAt: motorista.dataValues.updatedAt,
+        id: motorista.id,
+        cpf: formatter.cpfFormatter(motorista.cpf),
+        nome: motorista.nome,
+        dataNasc: formatter.dateFormatted(motorista.dataNasc),
+        genero: motorista.genero,
+        categoria: motorista.categoria,
+        email: motorista.email,
+        telefone: formatter.mphone(motorista.telefone),
+        createdAt: motorista.createdAt,
+        updatedAt: motorista.updatedAt,
       };
 
       res.render("motorista", { motorista: motoristaFormatado });
@@ -75,8 +75,6 @@ module.exports = class MotoristaController {
       telefone: req.body.telefone,
     };
 
-    console.log(dadosMotorista.genero);
-
     const motoristaCad = await Motorista.findOne({
       where: { cpf: dadosMotorista.cpf },
     });
@@ -98,7 +96,6 @@ module.exports = class MotoristaController {
         sucesso = true;
 
         const motorista = await Motorista.create(dadosMotorista);
-        // res.send(`Motorista criado com sucesso com o ID ${motorista.id}!`);
         res.render("menuMotoristas", { sucesso });
       }
     } else {
@@ -106,36 +103,26 @@ module.exports = class MotoristaController {
       res.render("cadastroMotorista", { dupErr: dupErr });
     }
   }
-
-  static async getFormAtualizacao(req, res) {
-    res.render("atualizarMotorista");
-
-    // const id = parseInt(req.params.id);
-
-    // const motorista = await Motorista.findByPk(id, { raw: true });
-
-    // if (motorista != null) {
-    //   res.render("cadastroMotorista", { motorista });
-    // } else {
-    //   res.redirect("/motorista");
-    // }
-  }
-
+  
   static async findAtualizar(req, res) {
     const id = parseInt(req.body.id);
 
-    const motorista = await Motorista.findByPk(id);
+    const motorista = await Motorista.findByPk(id, {raw: true});
 
-    res.render("atualizarMotorista", { motorista });
+    res.render("atualizarMotorista", { motorista: motorista });
+
   }
 
   static async atualizar(req, res) {
     let erros = false;
     let sucesso = false;
 
+    const id = parseInt(req.params.id);
+
     const dadosMotorista = {
+      id: id,
       cpf: req.body.cpf,
-      nome: req.body.cpf,
+      nome: req.body.name,
       dataNasc: req.body.dataNasc,
       genero: req.body.genero,
       categoria: req.body.categoria,
@@ -144,6 +131,7 @@ module.exports = class MotoristaController {
     };
 
     if (
+      !id ||
       !dadosMotorista.cpf ||
       !dadosMotorista.nome ||
       !dadosMotorista.dataNasc ||
@@ -179,8 +167,5 @@ module.exports = class MotoristaController {
       sucesso = true;
       res.render("menuMotoristas", { sucesso });
     }
-
-    console.log("Retorno da query: ", ret);
-    console.log("Tipo do retorno da query: ", typeof ret);
   }
 };

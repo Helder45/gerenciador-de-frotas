@@ -1,14 +1,22 @@
 //Comando para rodar o Watch do Tailwind
 //npx tailwindcss -i ./public/css/style.css -o ./dist/output.css --watch
 require("dotenv").config();
-const exphbs = require("express-handlebars");
+const hbs = require("express-handlebars");
 const exp = require("express");
-const app = exp();
+const app = exp();1
+
+//helpers
+const helpers = require("handlebars-helpers")();
+
+hbs.create({
+  helpers: helpers
+});
 
 const session = require("express-session");
 const FileStore = require("session-file-store")(session);
 const flash = require("express-flash");
 
+//projects basics
 const conn = require("./database/connection");
 const Motorista = require("./models/Motorista");
 const rotasMotoristas = require("./routes/motoristasRotas");
@@ -20,12 +28,13 @@ const rotasMotoristas = require("./routes/motoristasRotas");
 app.use(exp.urlencoded({ extended: true }));
 app.use(exp.json());
 
+
 //Pasta Estática
 app.use(exp.static("public"));
 app.use("/css", exp.static("dist"));
 
 //Usando Handlebars for views 
-app.engine("handlebars", exphbs.engine());
+app.engine("handlebars", hbs.engine());
 app.set("view engine", "handlebars");
 
 app.get("/", (req, res) => {
@@ -36,56 +45,7 @@ app.get("/home", (req, res) => {
   res.render("home");
 });
 
-app.get("/menuMotoristas", (req, res) => {
-  res.render("menuMotoristas");
-});
-
 app.use("/menuMotoristas", rotasMotoristas);
-
-// app.get("/cadastroMotorista", (req, res) => {
-//   res.render("cadastroMotorista");
-// });
-
-// app.post("/cadastroMotorista", (req, res) => {
-//   const cpf = req.body.cpf;
-//   const nome = req.body.name;
-//   const dataNasc = req.body.dataNasc;
-//   const genero = req.body.genero;
-//   const categoria = req.body.categoria;
-//   const email = req.body.email;
-//   const telefone = req.body.telefone;
-
-//   let erros = false;
-//   let sucesso = false;
-
-//   if (!cpf || !nome || !dataNasc || !genero || !categoria || !email || !telefone) {
-//     erros = true;
-//     res.render('cadastroMotorista', {erros: erros});
-//   } else {
-//     sucesso = true;
-    
-//     motoristas.push({
-//       id: id++,
-//       cpf: cpf,
-//       nome: nome,
-//       dataNasc: dataNasc,
-//       genero: genero,
-//       categoria: categoria,
-//       email: email,
-//       telefone: telefone,
-//     });
-  
-//     res.render('menuMotoristas', {sucesso});
-//   }
-// });
-
-// app.get("/motoristas", (req, res) => {
-//   res.render("motoristas", { motoristas });
-// });
-
-// app.get("/atualizarMotorista", (req, res) => {
-//   res.render("atualizarMotorista");
-// });
 
 // app.post("/menuMotoristas", (req, res) => {
 //   const id = parseInt(req.body.id);

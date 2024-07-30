@@ -27,22 +27,29 @@ function ValidaCPF() {
     if (cpf.length == 11) {
       const cpfVer = cpf.split("", 11);
 
-      let indexes = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-        sum = 0;
-      for (let index of indexes) {
+      let sum = 0;
+      for (let index = 0; index <= cpfVer.length - 1; index++) {
         sum += parseInt(cpfVer[index]);
       }
 
-      console.log(sum);
-      cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2"); //Coloca um ponto entre o terceiro e o quarto dígitos
-      cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2"); //Coloca um ponto entre o terceiro e o quarto dígitos
-      //de novo (para o segundo bloco de números)
-      cpf = cpf.replace(/(\d{3})(\d{1,2})$/, "$1-$2"); //Coloca um hífen entre o terceiro e o quarto dígitos
+      if (sum === 33 || sum === 44 || sum === 55 || sum === 66) {
+        document.getElementById("cpf_label").style.display = "none";
+        document.getElementById("cadastrar").disabled = false;
+        cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2"); //Coloca um ponto entre o terceiro e o quarto dígitos
+        cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2"); //Coloca um ponto entre o terceiro e o quarto dígitos
+        //de novo (para o segundo bloco de números)
+        cpf = cpf.replace(/(\d{3})(\d{1,2})$/, "$1-$2"); //Coloca um hífen entre o terceiro e o quarto dígitos
 
-      let valorValido = (document.getElementById("cpf").value = cpf);
-      console.log(valorValido);
+        document.getElementById("cpf").value = cpf;
+      } else {
+        document.getElementById("cpf_label").style.display = "block";
+        document.getElementById("cadastrar").disabled = true;
+      }
+
+      console.log(sum);
     } else {
-      console.log("CPF invalido");
+      document.getElementById("cpf_label").style.display = "block";
+      document.getElementById("cadastrar").disabled = true;
     }
   }
 }

@@ -15,8 +15,8 @@
     </div>
     {{/if}}
     {{#if motorista}}
-    <form action="/atualizacaoMotorista" method="post"
-        class="card mx-auto w-full h-screen max-w-md bg-base-100 shadow-xl p-5 flex items-center justify-center">
+    <form action="/menuMotoristas/atualizacaoMotorista/{{motorista.id}}" method="put"
+        class="card mx-auto w-full max-w-md bg-base-100 shadow-xl p-5 flex items-center justify-center">
         <h1 class="text-center text-2xl font-bold border p-8 rounded-box bg-stone-600/10 mb-4">Atualização de motorista
         </h1>
         <label class="form-control w-full max-w-xs">
@@ -24,7 +24,8 @@
                 <label for="cpf" class="label-text">Qual é o CPF do motorista?</label>
             </div>
             <input id="cpf" name="cpf" type="text" value="{{motorista.cpf}}" placeholder="Digite o cpf aqui"
-                class="input input-bordered w-full max-w-xs" />
+                class="input input-bordered w-full max-w-xs" onchange="ValidaCPF();" />
+            <span id="cpf_label" class="text-red-600 hidden ">CPF Inválido</span>
         </label>
         <label class="form-control w-full max-w-xs">
             <div class="label">
@@ -42,17 +43,37 @@
         </label>
         <label class="form-control w-full max-w-xs">
             <div class="label">
-                <label for="genero" class="label-text">Qual é o gênero do motorista?</label>
+                <label for="genero" class="label-text">Qual é o sexo do motorista?</label>
             </div>
-            <input id="genero" name="genero" type="text" value="{{motorista.genero}}"
-                placeholder="Masculino ou Feminino?" class="input input-bordered w-full max-w-xs" />
+            <select id="genero" name="genero" class="select select-bordered w-full max-w-xs">
+                <option value="Masculino">Masculino</option>
+                <option value="Feminino">Feminino</option>
+            </select>
         </label>
         <label class="form-control w-full max-w-xs">
             <div class="label">
                 <label for="categoria" class="label-text">Qual é a categoria de habilitação do motorista?</label>
             </div>
-            <input id="categoria" name="categoria" type="text" value="{{motorista.categoria}}"
-                placeholder="Digite a categoria aqui" class="input input-bordered w-full max-w-xs" />
+            <select name="categoria" id="categoria" class="select select-bordered w-full max-w-xs">
+                <option value="Categoria A">Categoria
+                    A</option>
+                <option value="Categoria B">Categoria
+                    B</option>
+                <option value="Categoria C">Categoria
+                    C</option>
+                <option value="Categoria D">Categoria
+                    D</option>
+                <option value="Categoria E">Categoria
+                    E</option>
+                <option value="Categoria A/B">
+                    Categoria A/B</option>
+                <option value="Categoria A/C">
+                    Categoria A/C</option>
+                <option value="Categoria A/D">
+                    Categoria A/D</option>
+                <option value="Categoria A/E">
+                    Categoria A/E</option>
+            </select>
         </label>
         <label class="form-control w-full max-w-xs">
             <div class="label">

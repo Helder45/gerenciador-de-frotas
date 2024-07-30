@@ -29,10 +29,10 @@
 
     </div>
     {{/if}}
-    <div class="border rounded-md px-2 my-2 bg-slate-100">
+    <div class="border rounded-box px-2 my-2 w-full bg-slate-300">
         <h1 class="text-xl font-bold my-4">Qual operação deseja realizar?</h1>
     </div>
-    <ul class="menu bg-base-200 w-56 rounded-box">
+    <ul class="menu bg-slate-300 w-full rounded-box">
         <li>
             <a href="/menuMotoristas/cadastroMotorista">
                 <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -55,6 +55,9 @@
             </a>
             <div class="modal" role="dialog" id="selectId">
                 <div class="modal-box">
+                    <form action="/menuMotoristas" method="get">
+                        <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                    </form>
                     <form action="/menuMotoristas/findListar" method="post">
                         <label class="form-control w-full max-w-xs">
                             <div class="label">
@@ -70,7 +73,7 @@
                 </div>
             </div>
         </li>
-        <li>    
+        <li>
             <a href="/menuMotoristas/motoristas">
                 <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M7 8H21M7 12H21M7 16H21M3 8H3.01M3 12H3.01M3 16H3.01" stroke="#000000" stroke-width="2"
@@ -92,6 +95,9 @@
             </a>
             <div class="modal" role="dialog" id="updateId">
                 <div class="modal-box">
+                    <form action="/menuMotoristas" method="get">
+                        <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                    </form>
                     <form action="/menuMotoristas/findAtualizar" method="post">
                         <label class="form-control w-full max-w-xs">
                             <div class="label">
@@ -118,6 +124,9 @@
             </a>
             <div class="modal" role="dialog" id="deleteId">
                 <div class="modal-box">
+                    <form action="/menuMotoristas" method="get">
+                        <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                    </form>
                     <form action="/menuMotoristas/excluirMotorista" method="post">
                         <label class="form-control w-full max-w-xs">
                             <div class="label">

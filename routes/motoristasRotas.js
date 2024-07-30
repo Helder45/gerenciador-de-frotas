@@ -18,11 +18,9 @@ router.get("/motorista", MotoristaController.motorista);
 
 router.get("/motoristas", MotoristaController.index);
 
-router.get("/atualizarMotorista", MotoristaController.getFormAtualizacao);
-
 router.post("/findAtualizar", MotoristaController.findAtualizar);
 
-router.post("/atualizacaoMotorista", MotoristaController.atualizar);
+router.put("/atualizacaoMotorista/:id", MotoristaController.atualizar);
 
 router.post("/excluirMotorista", MotoristaController.deletar);
 

@@ -1,3 +1,16 @@
+const exphbs = require("express-handlebars");
+
+var register = function(Handlebars) {
+  var helpers = {
+    categoryCompare: {
+      
+    },
+    sexCompare: {
+
+    },
+  }
+}
+
 function dateFormatted(date) {
   return date.split("-").reverse().join("/");
 }
