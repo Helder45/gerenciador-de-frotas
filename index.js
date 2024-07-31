@@ -20,6 +20,7 @@ const flash = require("express-flash");
 const conn = require("./database/connection");
 const Motorista = require("./models/Motorista");
 const rotasMotoristas = require("./routes/motoristasRotas");
+const Utilizacao = require("./models/Utilizacao");
 // const authRotas = require("./routes/authRotas");
 
 
