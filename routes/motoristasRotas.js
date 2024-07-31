@@ -20,7 +20,7 @@ router.get("/motoristas", MotoristaController.index);
 
 router.post("/findAtualizar", MotoristaController.findAtualizar);
 
-router.put("/atualizacaoMotorista/:id", MotoristaController.atualizar);
+router.post("/atualizacaoMotorista/:id", MotoristaController.atualizar);
 
 router.post("/excluirMotorista", MotoristaController.deletar);
 

@@ -45,7 +45,7 @@ module.exports = class MotoristaController {
     const motoristaFormatado = motoristas.map((mot) => {
       const motorista = {
         id: mot.id,
-        cpf: formatter.cpfFormatter(mot.cpf),
+        cpf: mot.cpf,
         nome: mot.nome,
         dataNasc: formatter.dateFormatted(mot.dataNasc),
         genero: mot.genero,

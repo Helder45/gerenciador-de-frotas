@@ -47,24 +47,6 @@ app.get("/home", (req, res) => {
 
 app.use("/menuMotoristas", rotasMotoristas);
 
-// app.post("/menuMotoristas", (req, res) => {
-//   const id = parseInt(req.body.id);
-
-//   const motorista = motoristas.find((motorista) => motorista.id === id);
-
-//   res.render("motorista", { motorista });
-
-// });
-
-// app.post("/atualizarMotorista", (req, res) => {
-//   const id = parseInt(req.body.id);
-
-//   const motorista = motoristas.find((motorista) => motorista.id === id);
-
-//   res.render("atualizarMotorista", { motorista });
-
-// });
-
 // app.post("/atualizacaoMotorista", (req, res) => {
 
 //   let erros = false;
