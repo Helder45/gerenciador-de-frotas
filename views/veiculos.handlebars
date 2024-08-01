@@ -1,62 +1,72 @@
 <main>
-    <h1 class="text-center bold text-xl">Veículos Cadastrados</h1>
-  <div class="overflow-x-auto">
-    <table class="table">
+  <h1 class="text-center bold text-xl">Veículos Cadastrados</h1>
+  <div class="border border-white/10 rounded-lg">
+    {{#if veiculos}}
+    <table class="table w-full">
       <!-- head -->
       <thead>
         <tr>
-          <th>
-            <label>
-              <input type="checkbox" class="checkbox" />
-            </label>
-          </th>
-          <th>Id</th>
-          <th>Nome</th>
-          <th>Apelido</th>
-          <th></th>
+          <th class="py-3 px-4 text-sm font-semibold text-left">Id</th>
+          <th class="py-3 px-4 text-sm font-semibold text-left">Marca</th>
+          <th class="py-3 px-4 text-sm font-semibold text-left">Modelo</th>
+          <th class="py-3 px-4 text-sm font-semibold text-left">Ano</th>
+          <th class="py-3 px-4 text-sm font-semibold text-left">Placa</th>
+          <th class="py-3 px-4 text-sm font-semibold text-left">Número do Chassi</th>
+          <th class="py-3 px-4 text-sm font-semibold text-left">Quilometragem</th>
+          <th class="py-3 px-4 text-sm font-semibold text-left">Status</th>
+          <th class="py-3 px-4 text-sm font-semibold text-left">Preço</th>
+          <th class="py-3 px-4 text-sm font-semibold text-left">Data de Aquisição</th>
+          <th class="py-3 px-4 text-sm font-semibold text-left">Última Manutenção</th>
+          <th class="py-3 px-4 text-sm font-semibold text-left">Próxima Manutenção</th>
+          <th class="py-3 px-4 text-sm font-semibold text-left">Status do Seguro</th>
+          <th class="py-3 px-4 text-sm font-semibold text-left">Capacidade de Carga</th>
+          <th class="py-3 px-4 text-sm font-semibold text-left">Tipo de veículo</th>
         </tr>
       </thead>
       <tbody>
-        <!-- row 1 -->
-        {{#if usuarios}}
-        {{#each usuarios}}
+        {{#each veiculos}}
         <tr>
-          <th>
-            <label>
-              <input type="checkbox" class="checkbox" />
-            </label>
-          </th>
-          <td>
+          <td class="py-3 px-4 text-sm text-black">
             <div class="flex items-center gap-3">
               <div>
                 <div class="font-bold">{{this.id}}</div>
               </div>
             </div>
           </td>
-          <td>
-            {{this.nome}}
-            <br />
-            <span class="badge badge-ghost badge-sm">{{this.cargo}}</span>
-          </td>
-          <td>{{this.nickname}}</td>
-          <th>
-            <button class="btn btn-ghost btn-xs">Mais</button>
-          </th>
+          <td class="py-3 px-4 text-sm text-black font-semibold">{{this.marca}}</td>
+          <td class="py-3 px-4 text-sm text-black font-semibold">{{this.modelo}}</td>
+          <td class="py-3 px-4 text-sm text-black font-semibold">{{this.ano}}</td>
+          <td class="py-3 px-4 text-sm text-black font-semibold">{{this.placa}}</td>
+          <td class="py-3 px-4 text-sm text-black font-semibold">{{this.num_chassi}}</td>
+          <td class="py-3 px-4 text-sm text-black font-semibold">{{this.quilometragem}}</td>
+          <td class="py-3 px-4 text-sm text-black font-semibold">{{this.status}}</td>
+          <td class="py-3 px-4 text-sm text-black font-semibold">{{this.preco}}</td>
+          <td class="py-3 px-4 text-sm text-black font-semibold">{{this.data_aquisicao}}</td>
+          <td class="py-3 px-4 text-sm text-black font-semibold">{{this.ultima_man}}</td>
+          <td class="py-3 px-4 text-sm text-black font-semibold">{{this.proxima_man}}</td>
+          <td class="py-3 px-4 text-sm text-black font-semibold">{{this.status_seguro}}</td>
+          <td class="py-3 px-4 text-sm text-black font-semibold">{{this.capacidade_carga}}</td>
+          <td class="py-3 px-4 text-sm text-black font-semibold">{{this.tipo_veiculo}}</td>
         </tr>
         {{/each}}
-        {{else}}
-        <tr>
-          <td>
-            <div class="flex items-center gap-3">
-              <div>
-                <div class="font-bold">Não há usuários</div>
-              </div>
-            </div>
-          </td>
-        </tr>
-        {{/if}}
       </tbody>
 
     </table>
+
+    <a href="/menuVeiculos" class="btn btn-neutral my-2 w-full">Voltar ao menu</a>
+
+    {{else}}
+
+    <div class="toast toast-middle toast-center bg-black/15 border rounded-box">
+      <div class="alert alert-error">
+        <span>Não há veículos cadastrados!</span>
+      </div>
+      <a href="/menuVeiculos" class="btn btn-neutral my-2 w-full">Voltar ao menu</a>
+    </div>
+
+    {{/if}}
+
   </div>
+
+  <script src="/js/script.js"></script>
 </main>

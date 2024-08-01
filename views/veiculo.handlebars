@@ -1,0 +1,30 @@
+<main>
+  {{#if veiculo}}
+  <div class="border rounded-md px-2 my-2 bg-slate-100">
+        <h1 class="text-xl font-bold my-4">Dados do veículo: {{veiculo.marca}} {{veiculo.modelo}}</h1>
+    
+  <p class="py-3 px-4 text-sm text-black font-bold border-y-2 bg-black/10 rounded-tr-box rounded-tl-box ">Marca: {{veiculo.marca}}</p>
+  <p class="py-3 px-4 text-sm text-black font-bold border-b-2 bg-black/10">Modelo: {{veiculo.modelo}}</p>
+  <p class="py-3 px-4 text-sm text-black font-bold border-b-2 bg-black/10">Ano do Veículo: {{veiculo.ano}}</p>
+  <p class="py-3 px-4 text-sm text-black font-bold border-b-2 bg-black/10">Placa do veículo: {{veiculo.placa}}</p>
+  <p class="py-3 px-4 text-sm text-black font-bold border-b-2 bg-black/10">Número do chassi: {{veiculo.num_chassi}}</p>
+  <p class="py-3 px-4 text-sm text-black font-bold border-b-2 bg-black/10">Quilometragem: {{veiculo.quilometragem}}</p>
+  <p class="py-3 px-4 text-sm text-black font-bold border-b-2 bg-black/10">Status: {{veiculo.status}}</p>
+  <p class="py-3 px-4 text-sm text-black font-bold border-b-2 bg-black/10">Preço: {{veiculo.preco}}</p>
+  <p class="py-3 px-4 text-sm text-black font-bold border-b-2 bg-black/10">Data de aquisição: {{veiculo.data_aquisicao}}</p>
+  <p class="py-3 px-4 text-sm text-black font-bold border-b-2 bg-black/10">Data da última manutenção: {{veiculo.ultima_man}}</p>
+  <p class="py-3 px-4 text-sm text-black font-bold border-b-2 bg-black/10">Data da próxima manutenção: {{veiculo.proxima_man}}</p>
+  <p class="py-3 px-4 text-sm text-black font-bold border-b-2 bg-black/10">Status do seguro: {{veiculo.status_seguro}}</p>
+  <p class="py-3 px-4 text-sm text-black font-bold border-b-2 bg-black/10">Capacidade de carga: {{veiculo.capacidade_carga}}</p>
+  <p class="py-3 px-4 text-sm text-black font-bold border-b-2 bg-black/10">Tipo de veículo: {{veiculo.tipo_veiculo}}</p>
+  <a href="/menuVeiculos" class="btn btn-neutral my-2">Voltar ao menu</a>
+  </div>
+  {{else}}
+
+  <div class="border rounded-md px-2 my-2 bg-slate-100">
+        <h1 class="text-xl font-bold my-4">Veículo não encontrado!</h1>
+        <a href="/menuVeiculos" class="btn btn-neutral my-2">Voltar ao menu</a>
+  </div>
+
+  {{/if}}
+</main>

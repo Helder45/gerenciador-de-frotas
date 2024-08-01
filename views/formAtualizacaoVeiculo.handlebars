@@ -1,0 +1,137 @@
+<main>
+    {{#if erros}}
+    <div id="alertFailure" class="alert alert-error" role="alert">
+        <button id="botaoAlertaFailure" type="button" data-dismiss-target="#alert" aria-label="Close">
+            <svg class="w-3 h-3 btn btn-circle border-0 bg-transparent" aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+            </svg>
+        </button>
+        <div class="text-sm font-medium">
+            Os campos devem ser todos preenchidos corretamente!
+        </div>
+
+    </div>
+    {{/if}}
+    {{#if veiculo}}
+    <form name="formulario" action="/menuVeiculos/atualizarVeiculo/{{motorista.id}}" method="post"
+        class="card mx-auto w-full max-w-md bg-base-200 shadow-xl p-5 flex items-center justify-center">
+        <h1 class="text-center text-2xl font-bold border p-8 rounded-box bg-stone-600/10 mb-4">Atualização de veículo
+        </h1>
+        <label class="form-control w-full max-w-xs">
+            <div class="label">
+                <label for="marca" class="label-text">Qual é a marca do veículo?</label>
+            </div>
+            <input id="marca" name="marca" type="text" placeholder="Digite a marca aqui"
+                class="input input-bordered w-full max-w-xs" />
+        </label>
+        <label class="form-control w-full max-w-xs">
+            <div class="label">
+                <label for="modelo" class="label-text">Qual é o modelo do veículo?</label>
+            </div>
+            <input id="modelo" name="modelo" type="text" placeholder="Digite o modelo aqui"
+                class="input input-bordered w-full max-w-xs" />
+        </label>
+        <label class="form-control w-full max-w-xs">
+            <div class="label">
+                <label for="ano" class="label-text">Qual o ano do veículo?</label>
+            </div>
+            <input id="ano" name="ano" type="number" min="1900" max="2099" step="1"
+                class="input input-bordered w-full max-w-xs" />
+        </label>
+        <label class="form-control w-full max-w-xs">
+            <div class="label">
+                <label for="placa" class="label-text">Qual é a placa do veículo?</label>
+            </div>
+            <input id="placa" name="placa" type="text" placeholder="Digite a placa aqui"
+                class="input input-bordered w-full max-w-xs" />
+        </label>
+        <label class="form-control w-full max-w-xs">
+            <div class="label">
+                <label for="num_chassi" class="label-text">Qual é o número do chassi do veículo?</label>
+            </div>
+            <input id="num_chassi" name="num_chassi" type="text" placeholder="Digite o número do chassi aqui"
+                class="input input-bordered w-full max-w-xs" />
+        </label>
+        <label class="form-control w-full max-w-xs">
+            <div class="label">
+                <label for="quilometragem" class="label-text">Qual a quilometragem do veículo?</label>
+            </div>
+            <input id="quilometragem" name="quilometragem" type="number" placeholder="Digite a quilometragem aqui"
+                class="input input-bordered w-full max-w-xs" />
+        </label>
+        <label class="form-control w-full max-w-xs">
+            <div class="label">
+                <label for="status" class="label-text">Qual o status do veículo?</label>
+            </div>
+            <select name="status" id="status" class="select select-bordered w-full max-w-xs">
+                <option value="1">Disponível</option>
+                <option value="2">Indisponível</option>
+                <option value="3">Em manutenção</option>
+                <option value="4">Acidente</option>
+            </select>
+        </label>
+        <label class="form-control w-full max-w-xs">
+            <div class="label">
+                <label for="preco" class="label-text">Qual o preço do veículo?</label>
+            </div>
+            <input id="preco" name="preco" type="number" placeholder="Digite a preço aqui"
+                class="input input-bordered w-full max-w-xs" />
+        </label>
+        <label class="form-control w-full max-w-xs">
+            <div class="label">
+                <label for="data_aquisicao" class="label-text">Qual a data de aquisição do veículo?</label>
+            </div>
+            <input id="data_aquisicao" name="data_aquisicao" type="date" class="input input-bordered w-full max-w-xs" />
+        </label>
+        <label class="form-control w-full max-w-xs">
+            <div class="label">
+                <label for="ultima_man" class="label-text">Qual a data da última manutenção do veículo?</label>
+            </div>
+            <input id="ultima_man" name="ultima_man" type="date" class="input input-bordered w-full max-w-xs" />
+        </label>
+        <label class="form-control w-full max-w-xs">
+            <div class="label">
+                <label for="proxima_man" class="label-text">Qual a data da próxima manutenção do veículo?</label>
+            </div>
+            <input id="proxima_man" name="proxima_man" type="date" class="input input-bordered w-full max-w-xs" />
+        </label>
+        <label class="form-control w-full max-w-xs">
+            <div class="label">
+                <label for="status_seguro" class="label-text">Qual o status do seguro do veículo?</label>
+            </div>
+            <select name="status_seguro" id="status_seguro" class="select select-bordered w-full max-w-xs">
+                <option value="1">Ativo</option>
+                <option value="2">Inativo</option>
+                <option value="3">Cancelado</option>
+                <option value="4">Suspenso</option>
+            </select>
+        </label>
+        <label class="form-control w-full max-w-xs">
+            <div class="label">
+                <label for="capacidade_carga" class="label-text">Qual a capacidade de carga do veículo?</label>
+            </div>
+            <input id="capacidade_carga" name="capacidade_carga" type="number" placeholder="Digite a capacidade aqui"
+                class="input input-bordered w-full max-w-xs" /> <span class="text-sm">kg</span>
+        </label>
+        <label class="form-control w-full max-w-xs">
+            <div class="label">
+                <label for="tipo_veiculo" class="label-text">Qual o tipo do veículo?</label>
+            </div>
+            <select name="tipo_veiculo" id="tipo_veiculo" class="select select-bordered w-full max-w-xs">
+                <option value="1">Automóvel - Categoria B</option>
+                <option value="2">Caminhão - Categoria C</option>
+                <option value="3">Ônibus - Categoria D</option>
+                <option value="4">Carreta - Categoria E</option>
+            </select>
+        </label>
+
+        <div class="mt-4 border-t-2 w-full flex flex-col items-center p-2">
+            <button id="botao_submit" class="btn btn-neutral w-full" type="submit">Cadastrar</button>
+            <a href="/menuVeiculos" class="btn btn-neutral my-2 w-full">Voltar ao menu</a>
+        </div>
+
+    </form>
+    <script src="/js/script.js"></script>
+</main>

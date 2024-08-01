@@ -20,6 +20,7 @@ const flash = require("express-flash");
 const conn = require("./database/connection");
 const Motorista = require("./models/Motorista");
 const rotasMotoristas = require("./routes/motoristasRotas");
+const rotasVeiculos = require("./routes/veiculosRotas");
 const Utilizacao = require("./models/Utilizacao");
 // const authRotas = require("./routes/authRotas");
 
@@ -47,6 +48,7 @@ app.get("/home", (req, res) => {
 });
 
 app.use("/menuMotoristas", rotasMotoristas);
+app.use("/menuVeiculos", rotasVeiculos);
 
 // app.post("/atualizacaoMotorista", (req, res) => {
 

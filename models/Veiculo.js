@@ -11,7 +11,7 @@ const Veiculo = conn.define("Veiculo", {
     allowNull: false,
   },
   ano: {
-    type: DataTypes.STRING,
+    type: DataTypes.INTEGER,
     allowNull: false,
   },
   placa: {
@@ -20,11 +20,11 @@ const Veiculo = conn.define("Veiculo", {
   },
   num_chassi: {
     type: DataTypes.STRING,
+    // unique: true,
     allowNull: false,
-    unique: true,
   },
   quilometragem: {
-    type: DataTypes.STRING,
+    type: DataTypes.INTEGER,
     allowNull: false,
   },
   status: {
@@ -32,7 +32,7 @@ const Veiculo = conn.define("Veiculo", {
     allowNull: false,
   },
   preco: {
-    type: DataTypes.STRING,
+    type: DataTypes.FLOAT,
     allowNull: false,
   },
   data_aquisicao: {
@@ -56,10 +56,6 @@ const Veiculo = conn.define("Veiculo", {
     allowNull: false,
   },
   tipo_veiculo: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  historico_acidentes: {
     type: DataTypes.STRING,
     allowNull: false,
   },

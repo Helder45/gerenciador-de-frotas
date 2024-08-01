@@ -95,7 +95,7 @@ module.exports = class MotoristaController {
       } else {
         sucesso = true;
 
-        const motorista = await Motorista.create(dadosMotorista);
+        await Motorista.create(dadosMotorista);
         res.render("menuMotoristas", { sucesso });
       }
     } else {
