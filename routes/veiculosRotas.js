@@ -14,8 +14,6 @@ router.post("/cadastrarVeiculo", VeiculoController.cadastrar);
 
 router.post("/getListar", VeiculoController.getListar);
 
-// router.get("/veiculo", VeiculoController.);
-
 router.get("/veiculos", VeiculoController.index);
 
 router.post("/getFormAtualizacao", VeiculoController.getFormAtualizacao);

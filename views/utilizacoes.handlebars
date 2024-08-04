@@ -1,0 +1,50 @@
+<main>
+  <h1 class="text-center bold text-xl">Veículos Cadastrados</h1>
+  <div class="border border-white/10 rounded-lg">
+    {{#if utilizacoes}}
+    <table class="table w-full">
+      <!-- head -->
+      <thead>
+        <tr>
+          <th class="py-3 px-4 text-sm font-semibold text-left">Data de Uso</th>
+          <th class="py-3 px-4 text-sm font-semibold text-left">Hora de Uso</th>
+          <th class="py-3 px-4 text-sm font-semibold text-left">Veículo</th>
+          <th class="py-3 px-4 text-sm font-semibold text-left">Motorista</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each utilizacoes}}
+        <tr>
+          <td class="py-3 px-4 text-sm text-black">
+            <div class="flex items-center gap-3">
+              <div>
+                <div class="font-bold">{{this.data_utilizacao}}</div>
+              </div>
+            </div>
+          </td>
+          <td class="py-3 px-4 text-sm text-black font-semibold">{{this.hora_utilizacao}}</td>
+          <td class="py-3 px-4 text-sm text-black font-semibold">{{this.VeiculoId}}</td>
+          <td class="py-3 px-4 text-sm text-black font-semibold">{{this.MotoristumId}}</td>
+        </tr>
+        {{/each}}
+      </tbody>
+
+    </table>
+
+    <a href="/menuUtilizacao" class="btn btn-neutral my-2 w-full">Voltar ao menu</a>
+
+    {{else}}
+
+    <div class="toast toast-middle toast-center bg-black/15 border rounded-box">
+      <div class="alert alert-error">
+        <span>Não há utilizações cadastradas!</span>
+      </div>
+      <a href="/menuUtilizacao" class="btn btn-neutral my-2 w-full">Voltar ao menu</a>
+    </div>
+
+    {{/if}}
+
+  </div>
+
+  <script src="/js/script.js"></script>
+</main>
