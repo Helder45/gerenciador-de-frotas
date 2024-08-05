@@ -3,14 +3,7 @@
 require("dotenv").config();
 const hbs = require("express-handlebars");
 const exp = require("express");
-const app = exp();1
-
-//helpers
-const helpers = require("handlebars-helpers")();
-
-hbs.create({
-  helpers: helpers
-});
+const app = exp();
 
 const session = require("express-session");
 const FileStore = require("session-file-store")(session);
@@ -52,73 +45,6 @@ app.use("/menuMotoristas", rotasMotoristas);
 app.use("/menuVeiculos", rotasVeiculos);
 app.use("/menuUtilizacao", rotasUtilizacao);
 
-// app.post("/atualizacaoMotorista", (req, res) => {
-
-//   let erros = false;
-//   let sucesso = false;
-
-//   const cpf = req.body.cpf;
-//   const nome = req.body.name;
-//   const dataNasc = req.body.dataNasc;
-//   const genero = req.body.genero;
-//   const categoria = req.body.categoria;
-//   const email = req.body.email;
-//   const telefone = req.body.telefone;
-
-//   if (!cpf || !nome || !dataNasc || !genero || !categoria || !email || !telefone) {
-//     erros = true;
-//     res.render('atualizarMotorista', {erros: erros});
-//   } else {
-//     sucesso = true;
-
-//     const motoristaIndex = motoristas.findIndex((motorista) => motorista.cpf == cpf);
-
-//     if (motoristaIndex !== -1) {
-//       // Atualiza os dados do motorista encontrado
-//       motoristas[motoristaIndex] = {
-//         ...motoristas[motoristaIndex],
-//         cpf,
-//         nome,
-//         dataNasc,
-//         genero,
-//         categoria,
-//         email,
-//         telefone
-//       };
-//     }
-
-//   res.render("menuMotoristas", {sucesso});
-//   }
-// });
-
-// app.post("/excluirMotorista", (req, res) => {
-
-//   let erros = false;
-
-//   const cpf = parseInt(req.body.cpf);
-
-//   if (!cpf) {
-//     erros = true;
-//     res.render('menuMotoristas', {erros});
-//   } else {
-//     sucesso = true;
-
-//     const motoristaIndex = motoristas.findIndex((motorista) => motorista.cpf == cpf);
-
-//     if (motoristaIndex !== -1) {
-  
-//       motoristas.splice(motoristaIndex, 1);
-
-//       for (let i = 0; i < motoristas.length; i++) {
-//         motoristas[i].id = i + 1;
-//       }
-//     }
-
-//   res.render("menuMotoristas", {sucesso});
-  
-//   }
-// });
-
 conn
   .sync()
   .then(() => {
@@ -128,28 +54,10 @@ conn
     console.log(err);
   });
 
-//Ideias Futuras
-
-//let veiculos = [];
-
-//let gerenciadores = [];
-
 // app.get("/login", (req, res) => {
 //   res.render("login");
 // });
 
 // app.get("/cadastro", (req, res) => {
 //   res.render("cadastro");
-// });
-
-// app.get("/menuVeiculos", (req, res) => {
-//   res.render("menuVeiculos");
-// });
-
-// app.get("/cadastroVeiculo", (req, res) => {
-//   res.render("cadastroVeiculo");
-// });
-
-// app.get("/veiculos", (req, res) => {
-//   res.render("veiculos", { veiculos });
 // });

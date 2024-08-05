@@ -1,5 +1,6 @@
 const Motorista = require("../models/Motorista");
 const Utilizacao = require("../models/Utilizacao");
+const Veiculo = require("../models/Veiculo");
 
 module.exports = class UtilizacaoController {
   static menu(req, res) {
@@ -23,8 +24,23 @@ module.exports = class UtilizacaoController {
     res.render("utilizacao", { utilizacao: utilizacao });
   }
 
-  static getFormCadastro(req, res) {
-    res.render("formCadastroUtilizacao");
+  static async getFormCadastro(req, res) {
+    const motoristasCadastrados = await Motorista.findAll({ raw: true });
+    console.log("Variavel motoristasCadastrados: ", motoristasCadastrados);
+    console.log(
+      "Tipo da variavel motoristasCadastrados: ",
+      typeof motoristasCadastrados
+    );
+    const veiculosCadastrados = await Veiculo.findAll({ raw: true });
+
+    if (motoristasCadastrados || veiculosCadastrados !== null) {
+      res.render("formCadastroUtilizacao", {
+        motoristas: motoristasCadastrados,
+        veiculos: veiculosCadastrados,
+      });
+    } else {
+      res.render("formCadastroUtilizacao");
+    }
   }
 
   static async index(req, res) {

@@ -13,6 +13,14 @@ const Utilizacao = conn.define("Utilizacao", {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  quilometragem_inicial: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  quilometragem_final: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
 });
 
 Veiculo.belongsToMany(Motorista, { through: Utilizacao });
