@@ -1,6 +1,8 @@
+const sequelize = require("../database/connection");
 const Motorista = require("../models/Motorista");
 const Utilizacao = require("../models/Utilizacao");
 const Veiculo = require("../models/Veiculo");
+const { QueryTypes } = require("sequelize");
 
 module.exports = class UtilizacaoController {
   static menu(req, res) {
@@ -25,88 +27,89 @@ module.exports = class UtilizacaoController {
   }
 
   static async getFormCadastro(req, res) {
+    let noDriverAndVehicle = false;
     const motoristasCadastrados = await Motorista.findAll({ raw: true });
-    console.log("Variavel motoristasCadastrados: ", motoristasCadastrados);
-    console.log(
-      "Tipo da variavel motoristasCadastrados: ",
-      typeof motoristasCadastrados
-    );
     const veiculosCadastrados = await Veiculo.findAll({ raw: true });
 
-    if (motoristasCadastrados || veiculosCadastrados !== null) {
+    // console.log(motoristasCadastrados.length);
+
+    if (
+      motoristasCadastrados.length !== 0 ||
+      veiculosCadastrados.length !== 0
+    ) {
       res.render("formCadastroUtilizacao", {
         motoristas: motoristasCadastrados,
         veiculos: veiculosCadastrados,
+        noDriverAndVehicle: noDriverAndVehicle,
       });
     } else {
-      res.render("formCadastroUtilizacao");
+      noDriverAndVehicle = true;
+      res.render("formCadastroUtilizacao", {
+        noDriverAndVehicle: noDriverAndVehicle,
+      });
     }
   }
 
   static async index(req, res) {
     const utilizacoes = await Utilizacao.findAll({ raw: true });
 
-    console.log("Utilizações: ", utilizacoes);
+    console.log(utilizacoes);
+    
 
-    res.render("utilizacoes", { utilizacoes });
+    res.render("utilizacoes", { utilizacoes: utilizacoes });
   }
 
   static async cadastrar(req, res) {
-    let dupErr = false;
     let erros = false;
     let sucesso = false;
+    let id = 1;
+
+      // const dataIgual = await Utilizacao.findOne({ where: { data_utilizacao: req.body.dataUtil } });
+      // console.log("dataIgual", dataIgual);
+      // const horaIgual = await Utilizacao.findOne({ where: { hora_utilizacao: req.body.horaUtil } });
+      // console.log("horaIgual", horaIgual);
+      // const motoristaIgual = await Utilizacao.findOne({ where: { motorista_id: req.body.motorista } });
+      // console.log("MotoristaIgual: ", motoristaIgual);
 
     const dadosUtilizacao = {
-      marca: req.body.marca,
-      modelo: req.body.modelo,
-      ano: req.body.ano,
-      placa: req.body.placa,
-      num_chassi: req.body.num_chassi,
-      quilometragem: req.body.quilometragem,
-      status: req.body.status,
-      preco: req.body.preco,
-      data_aquisicao: req.body.data_aquisicao,
-      ultima_man: req.body.ultima_man,
-      proxima_man: req.body.proxima_man,
-      status_seguro: req.body.status_seguro,
-      capacidade_carga: req.body.capacidade_carga,
-      tipo_utilizacao: req.body.tipo_utilizacao,
+      id: 1,
+      data_utilizacao: req.body.dataUtil,
+      hora_utilizacao: req.body.horaUtil,
+      quilometragem_inicial: req.body.km_inicial,
+      quilometragem_final: req.body.km_final,
+      veiculo_id: parseInt(req.body.veiculo),
+      motorista_id: parseInt(req.body.motorista),
     };
 
-    const utilizacao_cadastrado = await Utilizacao.findOne({
-      where: { num_chassi: dadosUtilizacao.num_chassi },
-    });
+    console.log(dadosUtilizacao);
+    
 
-    if (utilizacao_cadastrado === null) {
+
+    // const utilizacao_cadastrado = await Utilizacao.findOne({
+    //   where: { num_chassi: dadosUtilizacao.num_chassi },
+    // });
+
+    // if (utilizacao_cadastrado === null) {
       if (
-        !dadosUtilizacao.marca ||
-        !dadosUtilizacao.modelo ||
-        !dadosUtilizacao.ano ||
-        !dadosUtilizacao.placa ||
-        !dadosUtilizacao.num_chassi ||
-        !dadosUtilizacao.quilometragem ||
-        !dadosUtilizacao.status ||
-        !dadosUtilizacao.preco ||
-        !dadosUtilizacao.data_aquisicao ||
-        !dadosUtilizacao.ultima_man ||
-        !dadosUtilizacao.proxima_man ||
-        !dadosUtilizacao.status_seguro ||
-        !dadosUtilizacao.capacidade_carga ||
-        !dadosUtilizacao.tipo_utilizacao ||
+        !dadosUtilizacao.data_utilizacao ||
+        !dadosUtilizacao.hora_utilizacao ||
+        !dadosUtilizacao.quilometragem_inicial ||
+        !dadosUtilizacao.quilometragem_final ||
+        !dadosUtilizacao.motorista_id ||
+        !dadosUtilizacao.veiculo_id ||
         !dadosUtilizacao
       ) {
         erros = true;
         res.render("formCadastroUtilizacao", { erros: erros });
       } else {
         sucesso = true;
-
         await Utilizacao.create(dadosUtilizacao);
+        console.log("criado: ", dadosUtilizacao);
         res.render("menuUtilizacao", { sucesso });
       }
-    } else {
-      dupErr = true;
-      res.render("formCadastroUtilizacao", { dupErr: dupErr });
-    }
+    // } else {
+    //   res.render("formCadastroUtilizacao");
+    // }
   }
 
   static async getFormAtualizacao(req, res) {

@@ -41,19 +41,19 @@
                             stroke-linecap="round" stroke-linejoin="round" />
                     </g>
                 </svg>
-                Cadastrar Utilização
+                Adicionar Registro de Uso
             </a>
         </li>
         <li>
-            <a href="#selectId" class="">
+            <a href="#selectByDriverId" class="">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                Buscar Utilização por ID
+                Buscar Registro de Uso Por Motorista
             </a>
-            <div class="modal" role="dialog" id="selectId">
+            <div class="modal" role="dialog" id="selectByDriverId">
                 <div class="modal-box">
                     <form action="/menuUtilizacao" method="get">
                         <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
@@ -61,7 +61,36 @@
                     <form action="/menuUtilizacao/getListar" method="post">
                         <label class="form-control w-full max-w-xs">
                             <div class="label">
-                                <label for="id" class="label-text">Qual é o id da Utilização?</label>
+                                <label for="id" class="label-text">Qual é o id do motorista?</label>
+                            </div>
+                            <input id="id" name="id" type="text" placeholder="Digite o id aqui"
+                                class="input input-bordered w-full max-w-xs" />
+                        </label>
+                        <div class="modal-action">
+                            <button class="btn" type="submit">Enviar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </li>
+        <li>
+            <a href="#selectByVehicleId" class="">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Buscar Registro de Uso Por Veículo
+            </a>
+            <div class="modal" role="dialog" id="selectByVehicleId">
+                <div class="modal-box">
+                    <form action="/menuUtilizacao" method="get">
+                        <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                    </form>
+                    <form action="/menuUtilizacao/getListar" method="post">
+                        <label class="form-control w-full max-w-xs">
+                            <div class="label">
+                                <label for="id" class="label-text">Qual é o id do Veículo?</label>
                             </div>
                             <input id="id" name="id" type="text" placeholder="Digite o id aqui"
                                 class="input input-bordered w-full max-w-xs" />
@@ -79,7 +108,7 @@
                     <path d="M7 8H21M7 12H21M7 16H21M3 8H3.01M3 12H3.01M3 16H3.01" stroke="#000000" stroke-width="2"
                         stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
-                Listar Utilizações Cadastrados
+                Listar registros de uso cadastrados
             </a>
         </li>
         <li>
@@ -91,7 +120,7 @@
                     <path d="M12 8V12L15 15" stroke="#000000" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round" />
                 </svg>
-                Atualizar Utilização
+                Atualizar registro de uso
             </a>
             <div class="modal" role="dialog" id="updateId">
                 <div class="modal-box">
@@ -120,7 +149,7 @@
                     <path
                         d="M4,23H20a1,1,0,0,0,1-1V6a1,1,0,0,0-.293-.707l-4-4A1,1,0,0,0,16,1H4A1,1,0,0,0,3,2V22A1,1,0,0,0,4,23ZM5,3H15.586L19,6.414V21H5Zm10.207,7.207L13.414,12l1.793,1.793a1,1,0,1,1-1.414,1.414L12,13.414l-1.793,1.793a1,1,0,0,1-1.414-1.414L10.586,12,8.793,10.207a1,1,0,0,1,1.414-1.414L12,10.586l1.793-1.793a1,1,0,0,1,1.414,1.414Z" />
                 </svg>
-                Excluir Utilização
+                Excluir registro de uso
             </a>
             <div class="modal" role="dialog" id="deleteId">
                 <div class="modal-box">

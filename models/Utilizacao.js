@@ -5,6 +5,11 @@ const Motorista = require("./Motorista");
 const Veiculo = require("./Veiculo");
 
 const Utilizacao = conn.define("Utilizacao", {
+  utilizacao_id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
+  },
   data_utilizacao: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -19,11 +24,31 @@ const Utilizacao = conn.define("Utilizacao", {
   },
   quilometragem_final: {
     type: DataTypes.STRING,
-    allowNull: true,
+    allowNull: false,
   },
+  veiculo_id: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: Veiculo,
+      key: 'id',
+    },
+  },
+  motorista_id: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: Motorista,
+      key: 'id',
+    },
+  }
 });
 
-Veiculo.belongsToMany(Motorista, { through: Utilizacao });
-Motorista.belongsToMany(Veiculo, { through: Utilizacao });
+// Veiculo.belongsToMany(Motorista, {
+//   through: Utilizacao,
+//   foreignKey: { name: "veiculo_id", allowNull: false },
+// });
+// Motorista.belongsToMany(Veiculo, {
+//   through: Utilizacao,
+//   foreignKey: { name: "motorista_id", allowNull: false },
+// });
 
 module.exports = Utilizacao;

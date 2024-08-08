@@ -1,5 +1,5 @@
 <main>
-  <h1 class="text-center bold text-xl">Veículos Cadastrados</h1>
+  <h1 class="text-center bold text-xl">Registros de Uso Cadastrados</h1>
   <div class="border border-white/10 rounded-lg">
     {{#if utilizacoes}}
     <table class="table w-full">
@@ -8,6 +8,8 @@
         <tr>
           <th class="py-3 px-4 text-sm font-semibold text-left">Data de Uso</th>
           <th class="py-3 px-4 text-sm font-semibold text-left">Hora de Uso</th>
+          <th class="py-3 px-4 text-sm font-semibold text-left">KM Inicial</th>
+          <th class="py-3 px-4 text-sm font-semibold text-left">KM Final</th>
           <th class="py-3 px-4 text-sm font-semibold text-left">Veículo</th>
           <th class="py-3 px-4 text-sm font-semibold text-left">Motorista</th>
         </tr>
@@ -23,8 +25,10 @@
             </div>
           </td>
           <td class="py-3 px-4 text-sm text-black font-semibold">{{this.hora_utilizacao}}</td>
-          <td class="py-3 px-4 text-sm text-black font-semibold">{{this.VeiculoId}}</td>
-          <td class="py-3 px-4 text-sm text-black font-semibold">{{this.MotoristumId}}</td>
+          <td class="py-3 px-4 text-sm text-black font-semibold">{{this.quilometragem_inicial}}</td>
+          <td class="py-3 px-4 text-sm text-black font-semibold">{{this.quilometragem_final}}</td>
+          <td class="py-3 px-4 text-sm text-black font-semibold">{{this.veiculo_id}}</td>
+          <td class="py-3 px-4 text-sm text-black font-semibold">{{this.motorista_id}}</td>
         </tr>
         {{/each}}
       </tbody>

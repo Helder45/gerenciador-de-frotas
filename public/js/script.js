@@ -1,5 +1,7 @@
 const alertFailure = document.getElementById("alertFailure");
+const noAlertFailure = document.getElementById("noAlertFailure");
 const botaoAlertaFailure = document.getElementById("botaoAlertaFailure");
+const sairAlertaFailure = document.getElementById("sairAlertaFailure");
 const alertSuccess = document.getElementById("alertSuccess");
 const botaoAlertaSuccess = document.getElementById("botaoAlertaSuccess");
 
@@ -9,6 +11,14 @@ if (alertFailure) {
     alertFailure.parentNode.removeChild(alertFailure);
   });
 }
+
+if (noAlertFailure) {
+  sairAlertaFailure.addEventListener("click", (event) => {
+    event.preventDefault();
+    noAlertFailure.parentNode.removeChild(noAlertFailure);
+  });
+}
+
 
 if (alertSuccess) {
   botaoAlertaSuccess.addEventListener("click", (event) => {
