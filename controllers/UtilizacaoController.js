@@ -31,8 +31,6 @@ module.exports = class UtilizacaoController {
     const motoristasCadastrados = await Motorista.findAll({ raw: true });
     const veiculosCadastrados = await Veiculo.findAll({ raw: true });
 
-    // console.log(motoristasCadastrados.length);
-
     if (
       motoristasCadastrados.length !== 0 ||
       veiculosCadastrados.length !== 0
@@ -52,24 +50,12 @@ module.exports = class UtilizacaoController {
 
   static async index(req, res) {
     const utilizacoes = await Utilizacao.findAll({ raw: true });
-
-    console.log(utilizacoes);
-    
-
     res.render("utilizacoes", { utilizacoes: utilizacoes });
   }
 
   static async cadastrar(req, res) {
     let erros = false;
     let sucesso = false;
-    let id = 1;
-
-      // const dataIgual = await Utilizacao.findOne({ where: { data_utilizacao: req.body.dataUtil } });
-      // console.log("dataIgual", dataIgual);
-      // const horaIgual = await Utilizacao.findOne({ where: { hora_utilizacao: req.body.horaUtil } });
-      // console.log("horaIgual", horaIgual);
-      // const motoristaIgual = await Utilizacao.findOne({ where: { motorista_id: req.body.motorista } });
-      // console.log("MotoristaIgual: ", motoristaIgual);
 
     const dadosUtilizacao = {
       id: 1,
@@ -81,35 +67,22 @@ module.exports = class UtilizacaoController {
       motorista_id: parseInt(req.body.motorista),
     };
 
-    console.log(dadosUtilizacao);
-    
-
-
-    // const utilizacao_cadastrado = await Utilizacao.findOne({
-    //   where: { num_chassi: dadosUtilizacao.num_chassi },
-    // });
-
-    // if (utilizacao_cadastrado === null) {
-      if (
-        !dadosUtilizacao.data_utilizacao ||
-        !dadosUtilizacao.hora_utilizacao ||
-        !dadosUtilizacao.quilometragem_inicial ||
-        !dadosUtilizacao.quilometragem_final ||
-        !dadosUtilizacao.motorista_id ||
-        !dadosUtilizacao.veiculo_id ||
-        !dadosUtilizacao
-      ) {
-        erros = true;
-        res.render("formCadastroUtilizacao", { erros: erros });
-      } else {
-        sucesso = true;
-        await Utilizacao.create(dadosUtilizacao);
-        console.log("criado: ", dadosUtilizacao);
-        res.render("menuUtilizacao", { sucesso });
-      }
-    // } else {
-    //   res.render("formCadastroUtilizacao");
-    // }
+    if (
+      !dadosUtilizacao.data_utilizacao ||
+      !dadosUtilizacao.hora_utilizacao ||
+      !dadosUtilizacao.quilometragem_inicial ||
+      !dadosUtilizacao.quilometragem_final ||
+      !dadosUtilizacao.motorista_id ||
+      !dadosUtilizacao.veiculo_id ||
+      !dadosUtilizacao
+    ) {
+      erros = true;
+      res.render("formCadastroUtilizacao", { erros: erros });
+    } else {
+      sucesso = true;
+      await Utilizacao.create(dadosUtilizacao);
+      res.render("menuUtilizacao", { sucesso });
+    }
   }
 
   static async getFormAtualizacao(req, res) {
