@@ -4,7 +4,7 @@ const router = express.Router();
 const MotoristaController = require('../controllers/MotoristaController');
 const AuthController = require("../controllers/AuthController");
 
-// router.use(AuthController.makeAuthMiddleware);
+router.use(AuthController.makeAuthMiddleware);
 
 router.get("/", MotoristaController.menuMotoristas);
 

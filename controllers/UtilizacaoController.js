@@ -6,7 +6,7 @@ const { QueryTypes } = require("sequelize");
 
 module.exports = class UtilizacaoController {
   static menu(req, res) {
-    res.render("menuUtilizacao");
+    res.render("utilizacao/menuUtilizacao");
   }
 
   static async getListar(req, res) {
@@ -23,7 +23,7 @@ module.exports = class UtilizacaoController {
   }
 
   static utilizacao(req, res, utilizacao) {
-    res.render("utilizacao", { utilizacao: utilizacao });
+    res.render("utilizacao/utilizacao", { utilizacao: utilizacao });
   }
 
   static async getFormCadastro(req, res) {
@@ -35,14 +35,14 @@ module.exports = class UtilizacaoController {
       motoristasCadastrados.length !== 0 ||
       veiculosCadastrados.length !== 0
     ) {
-      res.render("formCadastroUtilizacao", {
+      res.render("utilizacao/formCadastroUtilizacao", {
         motoristas: motoristasCadastrados,
         veiculos: veiculosCadastrados,
         noDriverAndVehicle: noDriverAndVehicle,
       });
     } else {
       noDriverAndVehicle = true;
-      res.render("formCadastroUtilizacao", {
+      res.render("utilizacao/formCadastroUtilizacao", {
         noDriverAndVehicle: noDriverAndVehicle,
       });
     }
@@ -50,7 +50,7 @@ module.exports = class UtilizacaoController {
 
   static async index(req, res) {
     const utilizacoes = await Utilizacao.findAll({ raw: true });
-    res.render("utilizacoes", { utilizacoes: utilizacoes });
+    res.render("utilizacao/utilizacoes", { utilizacoes: utilizacoes });
   }
 
   static async cadastrar(req, res) {
@@ -77,11 +77,11 @@ module.exports = class UtilizacaoController {
       !dadosUtilizacao
     ) {
       erros = true;
-      res.render("formCadastroUtilizacao", { erros: erros });
+      res.render("utilizacao/formCadastroUtilizacao", { erros: erros });
     } else {
       sucesso = true;
       await Utilizacao.create(dadosUtilizacao);
-      res.render("menuUtilizacao", { sucesso });
+      res.render("utilizacao/menuUtilizacao", { sucesso });
     }
   }
 
@@ -96,7 +96,7 @@ module.exports = class UtilizacaoController {
       motoristasCadastrados.length !== 0 ||
       veiculosCadastrados.length !== 0
     ) {
-      res.render("formAtualizacaoUtilizacao", {
+      res.render("utilizacao/formAtualizacaoUtilizacao", {
         utilizacao: utilizacao,
         motoristas: motoristasCadastrados,
         veiculos: veiculosCadastrados,
@@ -104,7 +104,7 @@ module.exports = class UtilizacaoController {
       });
     } else {
       noDriverAndVehicle = true;
-      res.render("formAtualizacaoUtilizacao", {
+      res.render("utilizacao/formAtualizacaoUtilizacao", {
         noDriverAndVehicle: noDriverAndVehicle,
       });
     }
@@ -125,7 +125,6 @@ module.exports = class UtilizacaoController {
       veiculo_id: parseInt(req.body.veiculo),
       motorista_id: parseInt(req.body.motorista),
     };
-    console.log("DadosUtilizacao: ", dadosUtilizacao);
     
 
     if (
@@ -139,13 +138,13 @@ module.exports = class UtilizacaoController {
       !dadosUtilizacao
     ) {
       erros = true;
-      res.render("formAtualizacaoUtilizacao", { erros: erros });
+      res.render("utilizacao/formAtualizacaoUtilizacao", { erros: erros });
     } else {
       sucesso = true;
 
       await Utilizacao.update(dadosUtilizacao, { where: { utilizacao_id: id } });
 
-      res.render("menuUtilizacao", { sucesso });
+      res.render("utilizacao/menuUtilizacao", { sucesso });
     }
   }
 
@@ -159,10 +158,10 @@ module.exports = class UtilizacaoController {
 
     if (ret === 0) {
       erros = true;
-      res.render("menuUtilizacao", { erros });
+      res.render("utilizacao/menuUtilizacao", { erros });
     } else {
       sucesso = true;
-      res.render("menuUtilizacao", { sucesso });
+      res.render("utilizacao/menuUtilizacao", { sucesso });
     }
   }
 };

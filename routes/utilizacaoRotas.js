@@ -4,7 +4,7 @@ const router = express.Router();
 const UtilizacaoController = require('../controllers/UtilizacaoController');
 const AuthController = require("../controllers/AuthController");
 
-// router.use(AuthController.makeAuthMiddleware);
+router.use(AuthController.makeAuthMiddleware);
 
 router.get("/", UtilizacaoController.menu);
 

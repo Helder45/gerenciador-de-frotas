@@ -1,5 +1,5 @@
 <main>
-
+    {{#if session.userId}}
     <div class="h-auto w-full flex flex-col items-center my-4 bg-black/10 rounded-box ">
         <h1 class="text-xl font-bold my-4">Sistema de Gerenciamento de Frotas</h1>
         <h2 class="text-lg font-bold my-4">O que deseja gerenciar?</h2>
@@ -7,12 +7,32 @@
 
     <div class="container h-screen mx-auto flex items-center gap-3 flex-col">
         <div class="flex w-full">
-            <a href="/menuMotoristas" class="grid h-20 flex-grow card bg-base-300 rounded-box place-items-center">Motoristas</a>
+            <a href="/menuMotoristas"
+                class="grid h-20 flex-grow card bg-base-300 rounded-box place-items-center">Motoristas</a>
             <div class="divider divider-horizontal">OU</div>
-            <a href="/menuVeiculos" class="grid h-20 flex-grow card bg-base-300 rounded-box place-items-center">Veículos</a>
+            <a href="/menuVeiculos"
+                class="grid h-20 flex-grow card bg-base-300 rounded-box place-items-center">Veículos</a>
         </div>
         <div class="flex w-full">
-            <a href="/menuUtilizacao" class="grid h-20 flex-grow card bg-base-300 rounded-box place-items-center">Utilizacao</a>
+            <a href="/menuUtilizacao"
+                class="grid h-20 flex-grow card bg-base-300 rounded-box place-items-center">Utilizacao</a>
         </div>
     </div>
+    {{else}}
+    <div class="h-auto w-full flex flex-col items-center my-4 bg-black/10 rounded-box ">
+        <h1 class="text-xl font-bold my-4">Sistema de Gerenciamento de Frotas</h1>
+        <h2 class="text-lg font-bold my-4">Faça o login ou cadastre-se para acessar o sistema!
+        </h2>
+    </div>
+
+    <div class="container h-screen mx-auto flex items-center gap-3 flex-col">
+        <div class="flex w-full">
+            <a href="/login"
+                class="grid h-20 flex-grow card bg-base-300 rounded-box place-items-center">Entrar</a>
+            <div class="divider divider-horizontal">OU</div>
+            <a href="/cadastro"
+                class="grid h-20 flex-grow card bg-base-300 rounded-box place-items-center">Cadastrar</a>
+        </div>
+    </div>
+    {{/if}}
 </main>

@@ -1,24 +1,12 @@
 <main>
-    <div class="card mx-auto w-full h-screen max-w-md bg-base-100 shadow-xl p-5 flex items-center justify-center">
+
+    <form name="formulario" action="/cadastrar" method="post"
+        class="card mx-auto w-full max-w-md bg-base-200 shadow-xl p-5 flex items-center justify-center">
         <label class="form-control w-full max-w-xs">
             <div class="label">
-                <label for="cpf" class="label-text">Qual é o seu CPF?</label>
+                <label for="email" class="label-text">Qual é o seu E-mail?</label>
             </div>
-            <input id="cpf" name="cpf" type="text" placeholder="Digite seu cpf aqui"
-                class="input input-bordered w-full max-w-xs" />
-        </label>
-        <label class="form-control w-full max-w-xs">
-            <div class="label">
-                <label for="name" class="label-text">Qual é o seu nome?</label>
-            </div>
-            <input id="name" name="name" type="text" placeholder="Digite seu nome aqui"
-                class="input input-bordered w-full max-w-xs" />
-        </label>
-        <label class="form-control w-full max-w-xs">
-            <div class="label">
-                <label for="username" class="label-text">Qual o seu usuário?</label>
-            </div>
-            <input id="username" name="username" type="text" placeholder="Digite seu nome de usuário aqui"
+            <input id="email" name="email" type="email" placeholder="Digite seu e-mail aqui"
                 class="input input-bordered w-full max-w-xs" />
         </label>
         <label class="form-control w-full max-w-xs border-t-2 mt-2">
@@ -40,5 +28,6 @@
             <button class="btn btn-neutral w-full" type="submit">Cadastrar</button>
         </div>
 
-    </div>
+    </form>
+
 </main>

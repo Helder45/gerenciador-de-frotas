@@ -3,7 +3,7 @@ const formatter = require("../helpers/formatter");
 
 module.exports = class MotoristaController {
   static menuMotoristas(req, res) {
-    res.render("menuMotoristas");
+    res.render("motoristas/menuMotoristas");
   }
 
   static async findListar(req, res) {
@@ -25,18 +25,18 @@ module.exports = class MotoristaController {
         updatedAt: motorista.updatedAt,
       };
 
-      res.render("motorista", { motorista: motoristaFormatado });
+      res.render("motoristas/motorista", { motorista: motoristaFormatado });
     } else {
-      res.render("motorista", { motorista });
+      res.render("motoristas/motorista", { motorista });
     }
   }
 
   static motorista(req, res) {
-    res.render("motorista");
+    res.render("motoristas/motorista");
   }
 
   static getFormCadastro(req, res) {
-    res.render("cadastroMotorista");
+    res.render("motoristas/cadastroMotorista");
   }
 
   static async index(req, res) {
@@ -57,7 +57,7 @@ module.exports = class MotoristaController {
       };
       return motorista;
     }); 
-    res.render("motoristas", { motoristas: motoristaFormatado });
+    res.render("motoristas/motoristas", { motoristas: motoristaFormatado });
   }
 
   static async cadastrar(req, res) {
@@ -91,16 +91,16 @@ module.exports = class MotoristaController {
         !dadosMotorista
       ) {
         erros = true;
-        res.render("cadastroMotorista", { erros: erros });
+        res.render("motoristas/cadastroMotorista", { erros: erros });
       } else {
         sucesso = true;
 
         await Motorista.create(dadosMotorista);
-        res.render("menuMotoristas", { sucesso });
+        res.render("motoristas/menuMotoristas", { sucesso });
       }
     } else {
       dupErr = true;
-      res.render("cadastroMotorista", { dupErr: dupErr });
+      res.render("motoristas/cadastroMotorista", { dupErr: dupErr });
     }
   }
   
@@ -109,7 +109,7 @@ module.exports = class MotoristaController {
 
     const motorista = await Motorista.findByPk(id, {raw: true});
 
-    res.render("atualizarMotorista", { motorista: motorista });
+    res.render("motoristas/atualizarMotorista", { motorista: motorista });
 
   }
 
@@ -142,13 +142,13 @@ module.exports = class MotoristaController {
       !dadosMotorista
     ) {
       erros = true;
-      res.render("atualizarMotorista", { erros: erros });
+      res.render("motoristas/atualizarMotorista", { erros: erros });
     } else {
       sucesso = true;
 
       await Motorista.update(dadosMotorista, { where: { id: id } });
 
-      res.render("menuMotoristas", { sucesso });
+      res.render("motoristas/menuMotoristas", { sucesso });
     }
   }
 
@@ -162,10 +162,10 @@ module.exports = class MotoristaController {
 
     if (ret === 0) {
       erros = true;
-      res.render("menuMotoristas", { erros });
+      res.render("motoristas/menuMotoristas", { erros });
     } else {
       sucesso = true;
-      res.render("menuMotoristas", { sucesso });
+      res.render("motoristas/menuMotoristas", { sucesso });
     }
   }
 };

@@ -2,7 +2,7 @@ const Veiculo = require("../models/Veiculo");
 
 module.exports = class VeiculoController {
   static menu(req, res) {
-    res.render("menuVeiculos");
+    res.render("veiculos/menuVeiculos");
   }
 
   static async getListar(req, res) {
@@ -35,11 +35,11 @@ module.exports = class VeiculoController {
   }
 
   static veiculo(req, res, veiculo) {
-    res.render("veiculo", { veiculo: veiculo });
+    res.render("veiculos/veiculo", { veiculo: veiculo });
   }
 
   static getFormCadastro(req, res) {
-    res.render("formCadastroVeiculo");
+    res.render("veiculos/formCadastroVeiculo");
   }
 
   static async index(req, res) {
@@ -65,7 +65,7 @@ module.exports = class VeiculoController {
       };
       return veiculo;
     });
-    res.render("veiculos", { veiculos: veiculoFormatado });
+    res.render("veiculos/veiculos", { veiculos: veiculoFormatado });
   }
 
   static async cadastrar(req, res) {
@@ -113,16 +113,16 @@ module.exports = class VeiculoController {
         !dadosVeiculo
       ) {
         erros = true;
-        res.render("formCadastroVeiculo", { erros: erros });
+        res.render("veiculos/formCadastroVeiculo", { erros: erros });
       } else {
         sucesso = true;
 
         await Veiculo.create(dadosVeiculo);
-        res.render("menuVeiculos", { sucesso });
+        res.render("veiculos/menuVeiculos", { sucesso });
       }
     } else {
       dupErr = true;
-      res.render("formCadastroVeiculo", { dupErr: dupErr });
+      res.render("veiculos/formCadastroVeiculo", { dupErr: dupErr });
     }
   }
 
@@ -131,7 +131,7 @@ module.exports = class VeiculoController {
 
     const veiculo = await Veiculo.findByPk(id, { raw: true });
 
-    res.render("formAtualizacaoVeiculo", { veiculo: veiculo });
+    res.render("veiculos/formAtualizacaoVeiculo", { veiculo: veiculo });
   }
 
   static async atualizar(req, res) {
@@ -177,13 +177,13 @@ module.exports = class VeiculoController {
       !dadosVeiculo
     ) {
       erros = true;
-      res.render("formAtualizacaoVeiculo", { erros: erros });
+      res.render("veiculos/formAtualizacaoVeiculo", { erros: erros });
     } else {
       sucesso = true;
 
       await Veiculo.update(dadosVeiculo, { where: { id: id } });
 
-      res.render("menuVeiculos", { sucesso });
+      res.render("veiculos/menuVeiculos", { sucesso });
     }
   }
 
@@ -197,10 +197,10 @@ module.exports = class VeiculoController {
 
     if (ret === 0) {
       erros = true;
-      res.render("menuVeiculos", { erros });
+      res.render("veiculos/menuVeiculos", { erros });
     } else {
       sucesso = true;
-      res.render("menuVeiculos", { sucesso });
+      res.render("veiculos/menuVeiculos", { sucesso });
     }
   }
 };
