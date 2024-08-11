@@ -20,7 +20,6 @@ const Veiculo = conn.define("Veiculo", {
   },
   num_chassi: {
     type: DataTypes.STRING,
-    // unique: true,
     allowNull: false,
   },
   quilometragem: {
