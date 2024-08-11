@@ -1,0 +1,22 @@
+<main>
+  {{#if utilizacao}}
+  <div class="border rounded-md px-2 my-2 bg-slate-100">
+        <h1 class="text-xl font-bold my-4">Dados do registro de uso: {{utilizacao.utilizacao_id}}</h1>
+    
+  <p class="py-3 px-4 text-sm text-black font-bold border-y-2 bg-black/10 rounded-tr-box rounded-tl-box ">Data do registro de uso: {{utilizacao.data_utilizacao}}</p>
+  <p class="py-3 px-4 text-sm text-black font-bold border-b-2 bg-black/10">Hora do registro de uso: {{utilizacao.hora_utilizacao}}</p>
+  <p class="py-3 px-4 text-sm text-black font-bold border-b-2 bg-black/10">Quilometragem inicial do veículo: {{utilizacao.quilometragem_inicial}}</p>
+  <p class="py-3 px-4 text-sm text-black font-bold border-b-2 bg-black/10">Quilometragem final do veículo: {{utilizacao.quilometragem_final}}</p>
+  <p class="py-3 px-4 text-sm text-black font-bold border-b-2 bg-black/10">Id do veículo utilizado: {{utilizacao.veiculo_id}}</p>
+  <p class="py-3 px-4 text-sm text-black font-bold border-b-2 bg-black/10">Id do motorista que utilizou o veículo: {{utilizacao.motorista_id}}</p>
+  <a href="/menuUtilizacao" class="btn btn-neutral my-2">Voltar ao menu</a>
+  </div>
+  {{else}}
+
+  <div class="border rounded-md px-2 my-2 bg-slate-100">
+        <h1 class="text-xl font-bold my-4">Registro de uso não encontrado!</h1>
+        <a href="/menuUtilizacao" class="btn btn-neutral my-2">Voltar ao menu</a>
+  </div>
+
+  {{/if}}
+</main>

@@ -42,13 +42,4 @@ const Utilizacao = conn.define("Utilizacao", {
   }
 });
 
-// Veiculo.belongsToMany(Motorista, {
-//   through: Utilizacao,
-//   foreignKey: { name: "veiculo_id", allowNull: false },
-// });
-// Motorista.belongsToMany(Veiculo, {
-//   through: Utilizacao,
-//   foreignKey: { name: "motorista_id", allowNull: false },
-// });
-
 module.exports = Utilizacao;

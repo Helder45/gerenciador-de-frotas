@@ -12,9 +12,7 @@ router.get("/getFormCadastroUtilizacao", UtilizacaoController.getFormCadastro);
 
 router.post("/cadastrarUtilizacao", UtilizacaoController.cadastrar);
 
-// router.post("/getListarPorVeiculo", UtilizacaoController.getListarPorVeiculo);
-
-router.post("/getListarPorMotorista", UtilizacaoController.getListarPorMotorista);
+router.post("/getListar", UtilizacaoController.getListar);
 
 router.get("/utilizacoes", UtilizacaoController.index);
 
