@@ -72,10 +72,10 @@ module.exports = class AuthController {
     }
 
     const usuario = await Usuario.findOne({ where: { email: email } });
-    const senhaCorreta = bcrypt.compareSync(password, usuario.senha);
 
-    console.log(usuario);
-    console.log(senhaCorreta);
+    if (usuario) {
+      const senhaCorreta = bcrypt.compareSync(password, usuario.senha);
+    }
 
     if (!usuario || !senhaCorreta) {
       req.flash("msg", "Usuário ou senha inválidos!");
